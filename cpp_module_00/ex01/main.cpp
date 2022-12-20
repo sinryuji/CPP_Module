@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 21:11:05 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/20 21:16:55 by hyeongki         ###   ########.fr       */
+/*   Created: 2022/12/20 21:46:07 by hyeongki          #+#    #+#             */
+/*   Updated: 2022/12/20 22:31:00 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Contact.hpp"
 
-class PhoneBook
+int main()
 {
-	private:
-		Contact list[8];
 }
