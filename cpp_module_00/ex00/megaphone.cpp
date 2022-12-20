@@ -6,21 +6,11 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:17:49 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/17 15:49:39 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/20 21:22:52 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-
-std::string toupper_str(std::string str)
-{
-	std::string ret = "";
-
-	for (size_t i = 0; i < str.length(); i++)
-		ret += std::toupper(str[i]);
-
-	return ret;
-}
 
 int main(int argc, char **argv)
 {
@@ -28,11 +18,13 @@ int main(int argc, char **argv)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 	else 
 	{
-		std::string ret = "";
 		for (int i = 1; i < argc; i++)
-			ret += toupper_str(argv[i]);
-		std::cout << ret << std::endl;
+		{
+			std::string str(argv[i]);
+			for (size_t j = 0; j < str.length(); j++)
+				std::cout << (char)std::toupper(str[j]);
+		}
+		std::cout << std::endl;
 	}
-
 	return 0;
 }
