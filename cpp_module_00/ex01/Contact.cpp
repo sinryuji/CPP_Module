@@ -6,47 +6,61 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:48:41 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/20 22:17:56 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:25:02 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-std::string _first_name;
-std::string _last_name;
-std::string _nickname;
-std::string _phone_number;
-std::string _darkest_secret;
+void	Contact::SetInfo(void)	
+{
+	std::cout << "enter first name:" << std::endl;	
+	std::cin >> this->first_name;
+	std::cout << "enter last name:" << std::endl;	
+	std::cin >> this->last_name;
+	std::cout << "enter nickname:" << std::endl;	
+	std::cin >> this->nickname;
+	std::cout << "enter phone number:" << std::endl;	
+	std::cin >> this->phone_number;
+	std::cout << "enter darkest secret:" << std::endl;	
+	std::cin >> this->darkest_secret;
+}
 
-void set_value(std::string first_name,
-		std::string last_name,
-		std::string nickname,
-		std::string phone_number,
-		std::string darkest_secret)
+void	Contact::PrintField(std::string field)
 {
-	_last_name = last_name;
-	_nickname = nickname;
-	_phone_number = phone_number;
-	_darkest_secret = darkest_secret;
-	_first_name = first_name;
+	if (field.empty())
+	{
+		for (int i = 0; i < 10; i++)
+			std::cout << " ";
+	}	
+	else if (field.length() <= 10)
+	{
+		for (size_t i = 0; i < 10 - field.length(); i++)
+			std::cout << " ";
+		std::cout << field;
+	}
+	else
+	{
+		for (int i = 0; i < 9; i++)
+			std::cout << field[i];
+		std::cout << ".";
+	}
+	std::cout << "|";
 }
-std::string get_first_name()
+
+void	Contact::PrintFieldDetail(void)
 {
-	return _first_name;
+	std::cout << "first name: " << this->first_name << std::endl;
+	std::cout << "last name: " << this->last_name << std::endl;
+	std::cout << "nickname: " << this->nickname << std::endl;
+	std::cout << "phone number: " << this->phone_number << std::endl;
+	std::cout << "darkest secret: " << this->darkest_secret << std::endl;
 }
-std::string get_last_name()
+
+void	Contact::PrintInfo(void)
 {
-	return _last_name;
-}
-std::string get_nickname()
-{
-	return _nickname;
-}
-std::string get_phone_number()
-{
-	return _phone_number;
-}
-std::string get_darkest_secret()
-{
-	return _darkest_secret;
+	PrintField(this->first_name);
+	PrintField(this->last_name);
+	PrintField(this->nickname);
+	std::cout << std::endl;
 }

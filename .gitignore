@@ -7,3 +7,5 @@ phonebook
 
 # Header
 *.gch
+
+.DS_Store

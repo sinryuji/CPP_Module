@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 21:46:07 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/21 18:49:32 by hyeongki         ###   ########.fr       */
+/*   Created: 2022/12/21 16:50:51 by hyeongki          #+#    #+#             */
+/*   Updated: 2022/12/21 18:34:44 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
-int main(void)
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
+class PhoneBook
 {
-	std::string	cmd;
-	PhoneBook phone_book;
+	private:
+		Contact contacts[8];
+		int		index;
+		void	PrintContacts(void);
 
-	while (true)
-	{
-		std::cout << "enter command(ADD or SEARCH or EXIT):" << std::endl;
-		std::cin >> cmd;
-		if (cmd == "ADD")
-			phone_book.AddContact();
-		else if (cmd == "SEARCH")
-			phone_book.SearchContact();
-		else if (cmd == "EXIT")
-			break;
-	}
-	return EXIT_SUCCESS;
-}
+	public:
+		PhoneBook(void);
+		void	AddContact(void);
+		void	SearchContact(void);
+};
+
+#endif

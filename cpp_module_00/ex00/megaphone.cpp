@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:17:49 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/20 21:22:52 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:18:05 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int main(int argc, char **argv)
 		}
 		std::cout << std::endl;
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
