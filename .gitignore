@@ -1,10 +1,6 @@
 # Object files
 *.o
 
-# Executables
-megaphone
-phonebook
-
 # Header
 *.gch
 
