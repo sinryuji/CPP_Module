@@ -6,11 +6,13 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:11:05 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/21 18:46:07 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:05:09 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include <sstream>
+#include <string>
 
 PhoneBook::PhoneBook()
 {
@@ -35,23 +37,53 @@ void	PhoneBook::PrintContacts(void)
 	std::cout << "---------------------------------------------" << std::endl;
 }
 
+bool	PhoneBook::ValidateIndex(std::string index)
+{
+	for (int i = 1; i < 8; i++)
+	{
+		if (index == PhoneBook::ToString(i))
+			return true;
+	}
+	return false;
+}
+
 void	PhoneBook::SearchContact(void)
 {
-	int index;
+	std::string index;
+	int			n;
 
 	PrintContacts();
 	std::cout << "enter index number(0: quit):" << std::endl;
-	std::cin >> index;
-	if (std::cin.fail())
+	std::getline(std::cin, index);
+	if (index == "0")
+		return;
+	else if (ValidateIndex(index) == false)
 	{
 		std::cerr << "wrong input value" << std::endl;
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-	}
-	else if (index == 0)
 		return;
-	else if (index < 1 || index > 8)
-		std::cerr << "index out of range!" << std::endl;
-	else
-		this->contacts[index - 1].PrintFieldDetail();
+	}
+	std::stringstream ss(index);
+	ss >> n;
+	this->contacts[n - 1].PrintFieldDetail();
+}
+
+std::string	PhoneBook::ToString(int n)
+{
+	if (n == 1)
+		return "1";
+	if (n == 2)
+		return "2";
+	if (n == 3)
+		return "3";
+	if (n == 4)
+		return "4";
+	if (n == 5)
+		return "5";
+	if (n == 6)
+		return "7";
+	if (n == 7)
+		return "7";
+	if (n == 8)
+		return "8";
+	return NULL;
 }

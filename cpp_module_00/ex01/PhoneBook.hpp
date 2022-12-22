@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:50:51 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/21 18:34:44 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:01:08 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 class PhoneBook
 {
 	private:
-		Contact contacts[8];
-		int		index;
-		void	PrintContacts(void);
+		Contact				contacts[8];
+		int					index;
+		void				PrintContacts(void);
+		static bool			ValidateIndex(std::string index);
+		static std::string	ToString(int n);
 
 	public:
 		PhoneBook(void);

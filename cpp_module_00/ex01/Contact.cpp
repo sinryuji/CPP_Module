@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:48:41 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/21 18:25:02 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:06:52 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	Contact::SetInfo(void)	
 {
 	std::cout << "enter first name:" << std::endl;	
-	std::cin >> this->first_name;
+	std::getline(std::cin, this->first_name);
 	std::cout << "enter last name:" << std::endl;	
-	std::cin >> this->last_name;
+	std::getline(std::cin, this->last_name);
 	std::cout << "enter nickname:" << std::endl;	
-	std::cin >> this->nickname;
+	std::getline(std::cin, this->nickname);
 	std::cout << "enter phone number:" << std::endl;	
-	std::cin >> this->phone_number;
+	std::getline(std::cin, this->phone_number);
 	std::cout << "enter darkest secret:" << std::endl;	
-	std::cin >> this->darkest_secret;
+	std::getline(std::cin, this->darkest_secret);
 }
 
-void	Contact::PrintField(std::string field)
+void Contact::PrintField(std::string field)
 {
 	if (field.empty())
 	{
