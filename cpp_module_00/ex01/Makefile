@@ -6,7 +6,7 @@
 #    By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 16:47:30 by hyeongki          #+#    #+#              #
-#    Updated: 2022/12/20 21:26:37 by hyeongki         ###   ########.fr        #
+#    Updated: 2022/12/26 15:46:10 by hyeongki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC				=	Contact.cpp\
 					main.cpp
 OBJ				=	$(SRC:.cpp=.o)
 #----------------[ CMD ]------------------
-CC				=	g++
+CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -rf
 

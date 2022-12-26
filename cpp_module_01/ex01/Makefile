@@ -6,7 +6,7 @@
 #    By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 19:02:18 by hyeongki          #+#    #+#              #
-#    Updated: 2022/12/22 19:41:31 by hyeongki         ###   ########.fr        #
+#    Updated: 2022/12/26 15:46:43 by hyeongki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC				=	main.cpp\
 					zombieHorde.cpp
 OBJ				=	$(SRC:.cpp=.o)
 #----------------[ CMD ]------------------
-CC				=	g++
+CC				=	c++
 CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98
 RM				=	rm -rf
 
