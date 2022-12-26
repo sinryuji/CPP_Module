@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:27:05 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/26 17:32:54 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:26:13 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ class Contact
 		void		PrintFieldDetail(void);
 		static void	getlineEof(std::string& input);
 		bool		ValidateContact(void);
-		bool		ValidateField(std::string field);
+		bool		ValidateField(std::string& field);
+		void		ReplaceSpace(std::string& field);
 };
 
 #endif

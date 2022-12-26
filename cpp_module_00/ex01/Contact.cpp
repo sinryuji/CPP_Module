@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:48:41 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/26 17:36:53 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 18:30:56 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,7 @@ void	Contact::SetInfo(void)
 
 void Contact::PrintField(std::string field)
 {
-	if (field.empty())
-	{
-		for (int i = 0; i < 10; i++)
-			std::cout << " ";
-	}	
-	else if (field.length() <= 10)
+	if (field.length() <= 10)
 	{
 		for (size_t i = 0; i < 10 - field.length(); i++)
 			std::cout << " ";
@@ -43,7 +38,7 @@ void Contact::PrintField(std::string field)
 	else
 	{
 		for (int i = 0; i < 9; i++)
-			std::cout << field[i];
+			std::cout << field.at(i);
 		std::cout << ".";
 	}
 	std::cout << "|";
@@ -75,16 +70,19 @@ void	Contact::getlineEof(std::string& input)
 	}
 }
 
-bool	Contact::ValidateField(std::string field)
+bool	Contact::ValidateField(std::string& field)
 {
 	if (this->first_name.empty() == true)
 		return false;
 	for (size_t i = 0; i < field.length(); i++)
 	{
-		if (std::isspace(field[i]) == true)
+		if (std::isspace(field.at(i)) == true)
 			continue;
 		else
+		{
+			ReplaceSpace(field);
 			return true;
+		}
 	}
 	return false;
 }
@@ -104,3 +102,11 @@ bool	Contact::ValidateContact(void)
 	return true;
 }
 
+void	Contact::ReplaceSpace(std::string& field)
+{
+	for (size_t i = 0; i < field.length(); i++)
+	{
+		if (std::isspace(field.at(i)) == true)
+			field.replace(i, 1, " ");
+	}
+}
