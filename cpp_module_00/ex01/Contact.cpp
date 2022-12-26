@@ -6,11 +6,12 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:48:41 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/26 11:49:59 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:36:53 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include <cctype>
 
 void	Contact::SetInfo(void)	
 {
@@ -70,6 +71,36 @@ void	Contact::getlineEof(std::string& input)
 	if (std::getline(std::cin, input).eof() == true)
 	{
 		std::cout << "exit: eof" << std::endl;
-		exit(1);
+		std::exit(1);
 	}
 }
+
+bool	Contact::ValidateField(std::string field)
+{
+	if (this->first_name.empty() == true)
+		return false;
+	for (size_t i = 0; i < field.length(); i++)
+	{
+		if (std::isspace(field[i]) == true)
+			continue;
+		else
+			return true;
+	}
+	return false;
+}
+
+bool	Contact::ValidateContact(void)
+{
+	if (ValidateField(this->first_name) == false)
+		return false;
+	if (ValidateField(this->last_name) == false)
+		return false;
+	if (ValidateField(this->nickname) == false)
+		return false;
+	if (ValidateField(this->phone_number) == false)
+		return false;
+	if (ValidateField(this->darkest_secret) == false)
+		return false;
+	return true;
+}
+

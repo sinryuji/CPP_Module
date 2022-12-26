@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:11:05 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/26 11:51:09 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 17:30:15 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ PhoneBook::PhoneBook()
 void	PhoneBook::AddContact(void)
 {
 	this->contacts[this->index % 8].SetInfo();
+	if (this->contacts[this->index % 8].ValidateContact() == false)
+	{
+		std::cerr << "hava an empty field" << std::endl;
+		return;
+	}
 	index++;
 }
 
