@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 20:48:41 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/22 17:06:52 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:49:59 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	Contact::SetInfo(void)	
 {
 	std::cout << "enter first name:" << std::endl;	
-	std::getline(std::cin, this->first_name);
+	Contact::getlineEof(this->first_name);
 	std::cout << "enter last name:" << std::endl;	
-	std::getline(std::cin, this->last_name);
+	Contact::getlineEof(this->last_name);
 	std::cout << "enter nickname:" << std::endl;	
-	std::getline(std::cin, this->nickname);
+	Contact::getlineEof(this->nickname);
 	std::cout << "enter phone number:" << std::endl;	
-	std::getline(std::cin, this->phone_number);
+	Contact::getlineEof(this->phone_number);
 	std::cout << "enter darkest secret:" << std::endl;	
-	std::getline(std::cin, this->darkest_secret);
+	Contact::getlineEof(this->darkest_secret);
 }
 
 void Contact::PrintField(std::string field)
@@ -63,4 +63,13 @@ void	Contact::PrintInfo(void)
 	PrintField(this->last_name);
 	PrintField(this->nickname);
 	std::cout << std::endl;
+}
+
+void	Contact::getlineEof(std::string& input)
+{
+	if (std::getline(std::cin, input).eof() == true)
+	{
+		std::cout << "exit: eof" << std::endl;
+		exit(1);
+	}
 }

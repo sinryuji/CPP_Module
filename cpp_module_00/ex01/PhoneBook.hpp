@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 16:50:51 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/22 18:01:08 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:46:42 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class PhoneBook
 
 	public:
 		PhoneBook(void);
-		void	AddContact(void);
-		void	SearchContact(void);
+		void		AddContact(void);
+		void		SearchContact(void);
 };
 
 #endif

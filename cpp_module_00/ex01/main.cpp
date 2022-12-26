@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:46:07 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/22 18:05:47 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:47:42 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(void)
 	while (true)
 	{
 		std::cout << "enter command(ADD or SEARCH or EXIT):" << std::endl;
-		std::getline(std::cin, cmd);
+		Contact::getlineEof(cmd);
 		if (cmd == "ADD")
 			phone_book.AddContact();
 		else if (cmd == "SEARCH")

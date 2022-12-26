@@ -6,13 +6,12 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:11:05 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/22 18:05:09 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:51:09 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <sstream>
-#include <string>
 
 PhoneBook::PhoneBook()
 {
@@ -54,7 +53,7 @@ void	PhoneBook::SearchContact(void)
 
 	PrintContacts();
 	std::cout << "enter index number(0: quit):" << std::endl;
-	std::getline(std::cin, index);
+	Contact::getlineEof(index);
 	if (index == "0")
 		return;
 	else if (ValidateIndex(index) == false)

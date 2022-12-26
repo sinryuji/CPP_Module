@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:27:05 by hyeongki          #+#    #+#             */
-/*   Updated: 2022/12/22 18:01:29 by hyeongki         ###   ########.fr       */
+/*   Updated: 2022/12/26 12:02:35 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CONTACT_HPP
 
 # include <iostream>
-#include <string>
+# include <cstdlib>
 
 class Contact
 {
@@ -27,9 +27,10 @@ class Contact
 		static void	PrintField(std::string field);
 
 	public:
-		void	SetInfo(void);
-		void	PrintInfo(void);
-		void	PrintFieldDetail(void);
+		void		SetInfo(void);
+		void		PrintInfo(void);
+		void		PrintFieldDetail(void);
+		static void	getlineEof(std::string& input);
 };
 
 #endif
