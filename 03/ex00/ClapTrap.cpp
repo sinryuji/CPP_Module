@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:11:19 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/01 19:08:23 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/03 21:53:56 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ ClapTrap::ClapTrap(void)
 	this->hit = 10;
 	this->energy = 10;
 	this->damage = 0;
-	std::cout << "ClapTrap was born!" << std::endl;
+	std::cout << "ClapTrap anonymity was born!" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap(std::string name) : name(name)
 {
-	this->name = name;
 	this->hit = 10;
 	this->energy = 10;
 	this->damage = 0;
-	std::cout << this->name << " was born!" << std::endl;
+	std::cout << "ClapTrap " << this->name << " was born!" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& origin)
@@ -40,7 +39,7 @@ ClapTrap::ClapTrap(const ClapTrap& origin)
 	this->hit = origin.hit;
 	this->energy = origin.energy;
 	this->damage = origin.damage;
-	std::cout << this->name << " was copied" << std::endl;
+	std::cout << "ClapTrap " << this->name << " was copied" << std::endl;
 }
 
 /*
@@ -49,7 +48,7 @@ ClapTrap::ClapTrap(const ClapTrap& origin)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << this->name << " was destructed" << std::endl;
+	std::cout << "ClapTrap " << this->name << " was destructed" << std::endl;
 }
 
 /*
