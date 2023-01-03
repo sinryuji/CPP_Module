@@ -1,62 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 18:11:19 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/03 22:34:39 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/03 21:32:45 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/03 22:34:52 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 /*
  * -------------------------- Constructor -----------------------------
  */
 
-ClapTrap::ClapTrap(void)
+ScavTrap::ScavTrap(void)
 {
 	this->name = "anonymity";
-	this->hit = 10;
-	this->energy = 10;
-	this->damage = 0;
-	std::cout << "ClapTrap " << this->name << " was born!" << std::endl;
+	this->hit = 100;
+	this->energy = 50;
+	this->damage = 20;
+	std::cout << "ScavTrap " << this->name << " was born!" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name)
+ScavTrap::ScavTrap(std::string name)
 {
 	this->name = name;
-	this->hit = 10;
-	this->energy = 10;
-	this->damage = 0;
-	std::cout << "ClapTrap " << this->name << " was born!" << std::endl;
+	this->hit = 100;
+	this->energy = 50;
+	this->damage = 20;
+	std::cout << "ScavTrap " << this->name << " was born!" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& origin)
+ScavTrap::ScavTrap(const ScavTrap& origin)
 {
 	this->name = origin.name;
 	this->hit = origin.hit;
 	this->energy = origin.energy;
 	this->damage = origin.damage;
-	std::cout << "ClapTrap " << this->name << " was copied" << std::endl;
+	std::cout << "ScavTrap " << this->name << " was copied" << std::endl;
 }
 
 /*
  * -------------------------- Destructor -----------------------------
  */
 
-ClapTrap::~ClapTrap(void)
+ScavTrap::~ScavTrap(void)
 {
-	std::cout << "ClapTrap " << this->name << " was destructed" << std::endl;
+	std::cout << "ScavTrap " << this->name << " was destructed" << std::endl;
 }
 
 /*
  * -------------------------- Operator -----------------------------
  */
 
-ClapTrap&	ClapTrap::operator=(const ClapTrap& origin)
+ScavTrap&	ScavTrap::operator=(const ScavTrap& origin)
 {
 	if (this != &origin)	
 	{
@@ -72,32 +72,19 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& origin)
  * -------------------------- Function -----------------------------
  */
 
-void	ClapTrap::setDamage(int damage)
-{
-	this->damage = damage;
-}
-
-void	ClapTrap::attack(const std::string& target)
+void	ScavTrap::attack(const std::string& target)
 {
 	if (this->hit <= 0 || this->energy <= 0)	
 		return;
 	this->energy--;	
-	std::cout << "ClapTrap " << this->name << " attacks " << target \
+	std::cout << "ScavTrap " << this->name << " attacks " << target \
 		<< ", causing " << this->damage << " points of damage!" << std::endl;
 }
 
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	this->hit -= amount;
-	std::cout << "ClapTrap " << this->name << " was attacked and losts hits point as "\
-	   	<< amount << std::endl;
-}
 
-void	ClapTrap::beRepaired(unsigned int amount)
+void	ScavTrap::guardGate(void)
 {
 	if (this->hit <= 0 || this->energy <= 0)	
 		return;
-	this->hit += amount;	
-	std::cout << "ClapTrap " << this->name << " reapired and recovered hits point as "\
-	   	<< amount << std::endl;
+	std::cout << "ScavTrap " << this->name << " is Gate kepper mode" << std::endl;
 }
