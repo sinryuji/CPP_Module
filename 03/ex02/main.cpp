@@ -6,18 +6,19 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/04 16:43:31 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:47:14 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
 int	main(void)
 {
 	ScavTrap hyeongki("hyeongki");
-	ScavTrap enemy("enemy");
+	FragTrap enemy("enemy");
 
-	hyeongki.guardGate();
+	enemy.highFivesGuys();
 	hyeongki.setDamage(5);
 	hyeongki.attack("enemy");
 	enemy.takeDamage(5);

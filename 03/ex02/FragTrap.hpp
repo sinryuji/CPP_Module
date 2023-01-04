@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/04 16:43:31 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/04 16:34:30 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/04 16:36:47 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-int	main(void)
+# include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-	ScavTrap hyeongki("hyeongki");
-	ScavTrap enemy("enemy");
+	public:
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(const FragTrap& origin);
+		~FragTrap(void);
+		FragTrap&	operator=(const FragTrap& origin);
+		void		highFivesGuys(void);
+};
 
-	hyeongki.guardGate();
-	hyeongki.setDamage(5);
-	hyeongki.attack("enemy");
-	enemy.takeDamage(5);
-	enemy.beRepaired(3);
-	enemy.setDamage(10);
-	enemy.attack("hyeongki");
-	hyeongki.takeDamage(10);
-	hyeongki.beRepaired(10);
-	return 0;
-}
+#endif
