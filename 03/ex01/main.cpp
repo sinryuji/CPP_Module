@@ -6,16 +6,16 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/01 19:08:53 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:21:57 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap hyeongki("hyeongki");
-	ClapTrap enemy("enemy");
+	ScavTrap hyeongki("hyeongki");
+	ScavTrap enemy("enemy");
 
 	hyeongki.setDamage(5);
 	hyeongki.attack("enemy");
