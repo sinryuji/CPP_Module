@@ -1,47 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 23:50:04 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 02:19:13 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/05 18:51:30 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/06 00:46:02 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongAnimal.hpp"
 
 /*
  * -------------------------- Constructor -----------------------------
  */
 
-Cat::Cat(void) : Animal()
+WrongAnimal::WrongAnimal(void) : type("WrongAnimal")
 {
-	this->type = "Cat";
-	std::cout << "Cat constructor called" << std::endl;
+	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& origin) : Animal(origin)
+WrongAnimal::WrongAnimal(const WrongAnimal& origin) : type(origin.getType())
 {
-	this->type = origin.getType();
-	std::cout << "Cat copy constructor called" << std::endl;
+	std::cout << "WrongAnimal copy constructor called" << std::endl;
 }
 
 /*
  * -------------------------- Destructor -----------------------------
  */
 
-Cat::~Cat(void)
+WrongAnimal::~WrongAnimal(void)
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
 /*
  * -------------------------- Operator -----------------------------
  */
 
-Cat& Cat::operator=(const Cat& origin)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& origin)
 {
 	if (this != &origin)
 		this->type = origin.getType();
@@ -52,7 +50,12 @@ Cat& Cat::operator=(const Cat& origin)
  * -------------------------- Function -----------------------------
  */
 
-void	Cat::makeSound(void) const
+void	WrongAnimal::makeSound(void) const
 {
-	std::cout << "Meow!" << std::endl;
+	std::cout << "This instance is WrongAnimal" << std::endl;
+}
+
+std::string	WrongAnimal::getType(void) const
+{
+	return this->type;
 }

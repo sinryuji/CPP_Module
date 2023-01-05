@@ -1,50 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 23:50:04 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 02:19:13 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/06 00:29:46 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/06 02:45:59 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Brain.hpp"
 
 /*
  * -------------------------- Constructor -----------------------------
  */
 
-Cat::Cat(void) : Animal()
+Brain::Brain(void)
 {
-	this->type = "Cat";
-	std::cout << "Cat constructor called" << std::endl;
+	std::cout << "Brain constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& origin) : Animal(origin)
+Brain::Brain(const Brain& origin)
 {
-	this->type = origin.getType();
-	std::cout << "Cat copy constructor called" << std::endl;
+	for (int i = 0; i < 100; i++)
+		this->ideas[i] = origin.ideas[i];
+	std::cout << "Brain copy constructor called" << std::endl;
 }
 
 /*
  * -------------------------- Destructor -----------------------------
  */
 
-Cat::~Cat(void)
+Brain::~Brain(void)
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Brain destructor called" << std::endl;
 }
 
 /*
  * -------------------------- Operator -----------------------------
  */
 
-Cat& Cat::operator=(const Cat& origin)
+Brain& Brain::operator=(const Brain& origin)
 {
 	if (this != &origin)
-		this->type = origin.getType();
+	{
+		Brain brain = Brain();
+		for (int i = 0; i < 100; i++)
+			this->ideas[i] = origin.ideas[i];
+	}
 	return *this;
 }
 
@@ -52,7 +56,12 @@ Cat& Cat::operator=(const Cat& origin)
  * -------------------------- Function -----------------------------
  */
 
-void	Cat::makeSound(void) const
+std::string	Brain::getIdea(int i) const
 {
-	std::cout << "Meow!" << std::endl;
+	return this->ideas[i];
+}
+
+void	Brain::setIdea(std::string idea, int i)
+{
+	this->ideas[i] = idea;
 }

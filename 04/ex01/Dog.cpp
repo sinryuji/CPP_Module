@@ -1,50 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 23:50:04 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 02:19:13 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:49:48 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
 /*
  * -------------------------- Constructor -----------------------------
  */
 
-Cat::Cat(void) : Animal()
+Dog::Dog(void) : Animal()
 {
-	this->type = "Cat";
-	std::cout << "Cat constructor called" << std::endl;
+	this->type = "Dog";
+	this->brain = new Brain();
+	std::cout << "Dog constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& origin) : Animal(origin)
+Dog::Dog(const Dog& origin) : Animal(origin)
 {
 	this->type = origin.getType();
-	std::cout << "Cat copy constructor called" << std::endl;
+	this->brain = new Brain();
+	*this->brain = *origin.getBrain();
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
 /*
  * -------------------------- Destructor -----------------------------
  */
 
-Cat::~Cat(void)
+Dog::~Dog(void)
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Dog destructor called" << std::endl;
+	delete this->brain;
 }
 
 /*
  * -------------------------- Operator -----------------------------
  */
 
-Cat& Cat::operator=(const Cat& origin)
+Dog& Dog::operator=(const Dog& origin)
 {
 	if (this != &origin)
+	{
 		this->type = origin.getType();
+		*this->brain = *origin.getBrain();
+	}
 	return *this;
 }
 
@@ -52,7 +59,12 @@ Cat& Cat::operator=(const Cat& origin)
  * -------------------------- Function -----------------------------
  */
 
-void	Cat::makeSound(void) const
+void	Dog::makeSound(void) const
 {
-	std::cout << "Meow!" << std::endl;
+	std::cout << "Bowwow!" << std::endl;
+}
+
+Brain*	Dog::getBrain(void) const
+{
+	return this->brain;	
 }
