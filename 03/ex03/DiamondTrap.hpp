@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 17:36:15 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/05 15:17:19 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/05 17:08:57 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-int	main(void)
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
+
+class DiamondTrap : public FragTrap, public ScavTrap
 {
-	ScavTrap hyeongki("hyeongki");
-	ScavTrap enemy("enemy");
-	ScavTrap hyeongki2(hyeongki);
+	private:
+		std::string name;	
+	
+	public:
+		DiamondTrap(void);
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap& origin);
+		~DiamondTrap(void);
+		DiamondTrap&	operator=(const DiamondTrap& origin);
+		void			whoAmI(void);
+};
 
-	hyeongki.guardGate();
-	hyeongki.attack("enemy");
-	enemy.takeDamage(20);
-	enemy.beRepaired(30);
-	enemy.attack("hyeongki");
-	hyeongki.takeDamage(20);
-	hyeongki.beRepaired(30);
-	return 0;
-}
+#endif

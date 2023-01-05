@@ -1,62 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 16:37:02 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 17:41:15 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/05 16:10:35 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/05 17:55:49 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 /*
  * -------------------------- Constructor -----------------------------
  */
 
-FragTrap::FragTrap(void) : ClapTrap()
+DiamondTrap::DiamondTrap(void) : ClapTrap(), FragTrap(), ScavTrap()
 {
 	this->name = "anonymity";
-	this->hit = 100;
-	this->energy = 100;
+	ClapTrap::name = this->name + "_clap_name";
 	this->damage = 30;
-	std::cout << "FragTrap " << this->name << " was born!" << std::endl;
+	std::cout << "DiamondTrap " << this->name << " was born!" << std::endl;
 }
-
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), FragTrap(name), ScavTrap(name)
 {
 	this->name = name;
-	this->hit = 100;
-	this->energy = 100;
+	ClapTrap::name = name + "_clap_name";
 	this->damage = 30;
-	std::cout << "FragTrap " << this->name << " was born!" << std::endl;
+	std::cout << "DiamondTrap " << this->name << " was born!" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& origin) : ClapTrap(origin)
+DiamondTrap::DiamondTrap(const DiamondTrap& origin) : ClapTrap(origin), FragTrap(origin), ScavTrap(origin)
 {
 	this->name = origin.name;
 	this->hit = origin.hit;
 	this->energy = origin.energy;
 	this->damage = origin.damage;
-	std::cout << "FragTrap " << this->name << " was copied" << std::endl;
+	std::cout << "DiamondTrap " << this->name << " was copied" << std::endl;
 }
 
 /*
  * -------------------------- Destructor -----------------------------
  */
 
-FragTrap::~FragTrap(void)
+DiamondTrap::~DiamondTrap(void)
 {
-	std::cout << "FragTrap " << this->name << " was destructed" << std::endl;
+	std::cout << "DiamondTrap " << this->name << " was destructed" << std::endl;
 }
 
 /*
  * -------------------------- Operator -----------------------------
  */
 
-FragTrap&	FragTrap::operator=(const FragTrap& origin)
+DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& origin)
 {
 	if (this != &origin)	
 	{
@@ -72,9 +69,8 @@ FragTrap&	FragTrap::operator=(const FragTrap& origin)
  * -------------------------- Function -----------------------------
  */
 
-void	FragTrap::highFivesGuys(void)
+void	DiamondTrap::whoAmI(void)
 {
-	if (this->hit <= 0 || this->energy <= 0)	
-		return;
-	std::cout << "FragTrap " << this->name << " gave a high five" << std::endl;
+	std::cout	<< "This DiamondTrap name is " << this->name 
+		<< " and This ClapTrap name is " << ClapTrap::name << std::endl;
 }

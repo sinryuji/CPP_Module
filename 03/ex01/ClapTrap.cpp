@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:11:19 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/03 22:34:39 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:45:51 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,6 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& origin)
 /*
  * -------------------------- Function -----------------------------
  */
-
-void	ClapTrap::setDamage(int damage)
-{
-	this->damage = damage;
-}
 
 void	ClapTrap::attack(const std::string& target)
 {

@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 21:32:45 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/03 22:34:52 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:40:39 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * -------------------------- Constructor -----------------------------
  */
 
-ScavTrap::ScavTrap(void)
+ScavTrap::ScavTrap(void) : ClapTrap()
 {
 	this->name = "anonymity";
 	this->hit = 100;
@@ -25,7 +25,7 @@ ScavTrap::ScavTrap(void)
 	std::cout << "ScavTrap " << this->name << " was born!" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->name = name;
 	this->hit = 100;
@@ -34,7 +34,7 @@ ScavTrap::ScavTrap(std::string name)
 	std::cout << "ScavTrap " << this->name << " was born!" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& origin)
+ScavTrap::ScavTrap(const ScavTrap& origin) : ClapTrap(origin)
 {
 	this->name = origin.name;
 	this->hit = origin.hit;

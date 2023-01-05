@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:11:19 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 16:43:36 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:48:08 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 
 ClapTrap::ClapTrap(void)
 {
-	this->name = "empty";
+	this->name = "anonymity";
 	this->hit = 10;
 	this->energy = 10;
 	this->damage = 0;
-	std::cout << "ClapTrap anonymity was born!" << std::endl;
+	std::cout << "ClapTrap " << this->name << " was born!" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : name(name)
+ClapTrap::ClapTrap(std::string name)
 {
+	this->name = name;
 	this->hit = 10;
 	this->energy = 10;
 	this->damage = 0;

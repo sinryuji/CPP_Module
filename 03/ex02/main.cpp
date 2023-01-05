@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/04 16:47:14 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:47:25 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ int	main(void)
 	FragTrap enemy("enemy");
 
 	enemy.highFivesGuys();
-	hyeongki.setDamage(5);
 	hyeongki.attack("enemy");
-	enemy.takeDamage(5);
-	enemy.beRepaired(3);
-	enemy.setDamage(10);
+	enemy.takeDamage(20);
+	enemy.beRepaired(10);
 	enemy.attack("hyeongki");
-	hyeongki.takeDamage(10);
-	hyeongki.beRepaired(10);
+	hyeongki.takeDamage(30);
+	hyeongki.beRepaired(30);
 	return 0;
 }

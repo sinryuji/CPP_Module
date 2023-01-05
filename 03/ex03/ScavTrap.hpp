@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 17:36:15 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/02 15:45:50 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/05 15:36:22 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-int	main(void)
+# include "ClapTrap.hpp"
+
+class ScavTrap : virtual public ClapTrap
 {
-	ScavTrap hyeongki("hyeongki");
-	ScavTrap enemy("enemy");
-	ScavTrap hyeongki2(hyeongki);
+	public:
+		ScavTrap(void);
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap& origin);
+		~ScavTrap(void);
+		ScavTrap&	operator=(const ScavTrap& origin);
+		void	attack(const std::string& target);
+		void	guardGate(void);
+};
 
-	hyeongki.guardGate();
-	hyeongki.attack("enemy");
-	enemy.takeDamage(20);
-	enemy.beRepaired(30);
-	enemy.attack("hyeongki");
-	hyeongki.takeDamage(20);
-	hyeongki.beRepaired(30);
-	return 0;
-}
+#endif

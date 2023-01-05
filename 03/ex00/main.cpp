@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:54:54 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/01 19:08:53 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:28:35 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,20 @@ int	main(void)
 	ClapTrap hyeongki("hyeongki");
 	ClapTrap enemy("enemy");
 
-	hyeongki.setDamage(5);
 	hyeongki.attack("enemy");
-	enemy.takeDamage(5);
-	enemy.beRepaired(3);
-	enemy.setDamage(10);
+	enemy.takeDamage(0);
+	enemy.beRepaired(1);
 	enemy.attack("hyeongki");
-	hyeongki.takeDamage(10);
-	hyeongki.beRepaired(10);
+	hyeongki.takeDamage(0);
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.attack("hyeongki");
+	enemy.beRepaired(1);
 	return 0;
 }
