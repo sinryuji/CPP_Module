@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:41:34 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 00:10:12 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:38:28 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ int main()
 	const WrongAnimal* k = new WrongCat();
 	std::cout << k->getType() << " " << std::endl;
 	k->makeSound();
+	delete meta;
+	delete i;
+	delete j;
+	delete k;
 	return 0;
 }

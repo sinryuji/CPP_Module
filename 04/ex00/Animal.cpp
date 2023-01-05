@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:51:30 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 23:53:31 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:42:51 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 Animal::Animal(void) : type("Animal")
 {
-	std::cout << this->type << " constructor called" << std::endl;
+	std::cout << "Animal constructor called" << std::endl;
 }
 
 Animal::Animal(const Animal& origin) : type(origin.getType())
 {
-	std::cout << this->type << " copy constructor called" << std::endl;
+	std::cout << "Animal copy constructor called" << std::endl;
 }
 
 /*
@@ -32,7 +32,7 @@ Animal::Animal(const Animal& origin) : type(origin.getType())
 
 Animal::~Animal(void)
 {
-	std::cout << this->type << " destructor called" << std::endl;
+	std::cout << "Animal destructor called" << std::endl;
 }
 
 /*

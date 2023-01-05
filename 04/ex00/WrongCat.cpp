@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 23:50:04 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 00:35:41 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:44:24 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 WrongCat::WrongCat(void) : WrongAnimal()
 {
 	this->type = "WrongCat";
-	std::cout << this->type << " constructor called" << std::endl;
+	std::cout << "WrongCat constructor called" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat& origin) : WrongAnimal(origin)
 {
 	this->type = origin.getType();
-	std::cout << this->type << " copy constructor called" << std::endl;
+	std::cout << "WrongCat copy constructor called" << std::endl;
 }
 
 /*
@@ -34,7 +34,7 @@ WrongCat::WrongCat(const WrongCat& origin) : WrongAnimal(origin)
 
 WrongCat::~WrongCat(void)
 {
-	std::cout << this->type << " destructor called" << std::endl;
+	std::cout << "WrongCat destructor called" << std::endl;
 }
 
 /*
