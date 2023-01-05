@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 23:50:04 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 23:59:31 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:34:43 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Dog::Dog(const Dog& origin) : Animal(origin)
 
 Dog::~Dog(void)
 {
-	std::cout << "Dog class " << this->type << " destructor called" << std::endl;
+	std::cout << this->type << " destructor called" << std::endl;
 }
 
 /*

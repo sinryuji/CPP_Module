@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 23:50:04 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 00:01:20 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:34:57 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Cat::Cat(const Cat& origin) : Animal(origin)
 
 Cat::~Cat(void)
 {
-	std::cout << "Cat class " << this->type << " destructor called" << std::endl;
+	std::cout << this->type << " destructor called" << std::endl;
 }
 
 /*
