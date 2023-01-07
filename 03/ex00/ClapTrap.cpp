@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 18:11:19 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/05 16:43:36 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:51:53 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 ClapTrap::ClapTrap(void)
 {
-	this->name = "empty";
+	this->name = "anonymity";
 	this->hit = 10;
 	this->energy = 10;
 	this->damage = 0;
