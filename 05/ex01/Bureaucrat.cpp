@@ -6,11 +6,12 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:47:40 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 16:15:50 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:31:58 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 /*
  * -------------------------- Constructor -----------------------------
@@ -62,14 +63,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &origin)
  * -------------------------- Function -----------------------------
  */
 
-void	Bureaucrat::validateGrade(int grade)
-{
-	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
-}
-
 const std::string	Bureaucrat::getName(void) const
 {
 	return this->name;
@@ -118,4 +111,24 @@ std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
 {
 	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return out;
+}
+
+void	validateGrade(int grade)
+{
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	try {
+		if (form.beSigned(*this) == true)
+			std::cout << this->name << " signed " << form.getName() << std::endl;
+		else
+			std::cout << form.getName() << " already signed" << std::endl;
+	} catch(Form::RequiredGradeException& e) {
+		std::cout << e.what() << std::endl;
+	}
 }

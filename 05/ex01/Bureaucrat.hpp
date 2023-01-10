@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:36:08 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/06 15:48:37 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:31:51 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # include <iostream>
 
+class Form;
+
 class Bureaucrat
 {
 	private:
 		const std::string	name;
 		int					grade;
-		void				validateGrade(int grade);
 
 	public:
 		Bureaucrat(void);
@@ -34,6 +35,7 @@ class Bureaucrat
 		void				decreaseGrade(void);
 		void				increaseGrade(int grade);
 		void				decreaseGrade(int grade);
+		void				signForm(Form& form);
 		class GradeTooHighException : public std::exception
 		{
 			public:
@@ -47,5 +49,6 @@ class Bureaucrat
 };
 
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+void			validateGrade(int grade);
 
 #endif
