@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/10 22:18:00 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/10 23:11:13 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ Form& Form::operator=(const Form& origin)
 std::ostream&	operator<<(std::ostream& out, const Form& origin)
 {
 	out << "Form (" << origin.getName() << "): signFlag = " << std::boolalpha << origin.getSignFlag() \
-		<< ", signGrade = " << origin.getSignGrade() << ", executeGrade = " << origin.getExecuteGrad() \
-		<< std::endl;
+		<< ", signGrade = " << origin.getSignGrade() << ", executeGrade = " << origin.getExecuteGrad();
 	return out;
 }
 
