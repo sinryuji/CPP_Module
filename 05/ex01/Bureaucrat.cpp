@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:47:40 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/10 23:15:13 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/10 23:25:44 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,14 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &origin)
 	return *this;
 }
 
+std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
+{
+	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return out;
+}
+
 /*
- * -------------------------- Function -----------------------------
+ * -------------------------- Getter -------------------------------
  */
 
 const std::string	Bureaucrat::getName(void) const
@@ -72,6 +78,24 @@ int	Bureaucrat::getGrade(void) const
 {
 	return this->grade;
 }
+
+/*
+ * -------------------------- Overriding ---------------------------
+ */
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade over highest";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade over lowest";
+}
+
+/*
+ * -------------------------- Function -----------------------------
+ */
 
 void	Bureaucrat::increaseGrade(void)
 {
@@ -95,22 +119,6 @@ void	Bureaucrat::decreaseGrade(int grade)
 {
 	validateGrade(this->grade + grade);
 	this->grade += grade;
-}
-
-const char* Bureaucrat::GradeTooHighException::what() const throw()
-{
-	return "Grade over highest";
-}
-
-const char* Bureaucrat::GradeTooLowException::what() const throw()
-{
-	return "Grade over lowest";
-}
-
-std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
-{
-	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-	return out;
 }
 
 void	validateGrade(int grade)

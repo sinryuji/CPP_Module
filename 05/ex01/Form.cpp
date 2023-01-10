@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/10 23:11:13 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/10 23:26:38 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ std::ostream&	operator<<(std::ostream& out, const Form& origin)
 }
 
 /*
- * -------------------------- Function -----------------------------
+ * -------------------------- Getter -------------------------------
  */
 
 const std::string	Form::getName(void) const
@@ -90,21 +90,9 @@ int	Form::getExecuteGrad(void) const
 	return this->executeGrade;
 }
 
-bool	Form::beSigned(const Bureaucrat& bureaucrat)
-{
-	if (bureaucrat.getGrade() <= this->signGrade)
-	{
-		if (this->signFlag == false)
-		{
-			this->signFlag = true;
-			return true;
-		}
-		else
-			return false;
-	}
-	else
-		throw Form::RequiredGradeException(bureaucrat.getName(), this->name);
-}
+/*
+ * -------------------------- Overriding ---------------------------
+ */
 
 const char* Form::GradeTooHighException::what() const throw()
 {
@@ -128,4 +116,24 @@ Form::RequiredGradeException::~RequiredGradeException(void) throw() {}
 const char* Form::RequiredGradeException::what() const throw()
 {
 	return this->message.c_str();
+}
+
+/*
+ * -------------------------- Function -----------------------------
+ */
+
+bool	Form::beSigned(const Bureaucrat& bureaucrat)
+{
+	if (bureaucrat.getGrade() <= this->signGrade)
+	{
+		if (this->signFlag == false)
+		{
+			this->signFlag = true;
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+		throw Form::RequiredGradeException(bureaucrat.getName(), this->name);
 }
