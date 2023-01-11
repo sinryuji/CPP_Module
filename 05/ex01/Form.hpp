@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:00:10 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/10 18:54:30 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:26:21 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ class Form
 		class RequiredGradeException : public std::exception
 		{
 			private:
-				std::string bureaucratName;
-				std::string formName;
 				std::string message;
 
 			public:

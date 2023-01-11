@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:04:26 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:26:40 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ const char* Form::GradeTooLowException::what() const throw()
 }
 
 Form::RequiredGradeException::RequiredGradeException(std::string bureaucratName, \
-		std::string formName) : bureaucratName(bureaucratName), formName(formName)
+		std::string formName)
 {
 	this->message = bureaucratName + " couldn't sign " + formName \
 			+ " because " + bureaucratName + " grade is lower than the required grade";
