@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:41:09 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:07:13 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 /*
  * -------------------------- Getter -------------------------------
  */
+
+std::string	PresidentialPardonForm::getTarget(void)
+{
+	return this->target;
+}
 
 /*
  * -------------------------- Setter -------------------------------

@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:40:55 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:00:32 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,33 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
  * -------------------------- Getter -------------------------------
  */
 
-/*
- * -------------------------- Setter -------------------------------
- */
-
-/*
- * -------------------------- Overriding ---------------------------
- */
+std::string	ShrubberyCreationForm::getTarget(void)
+{
+	return this->target;
+}
 
 /*
  * -------------------------- Function -----------------------------
  */
 
-void	execute(Bureaucrat const& executor)
+void	ShrubberyCreationForm::execute(Bureaucrat const& executor)
 {
+	this->checkExecutePossible(executor);
+	std::ofstream	ofs = std::ofstream(this->getTarget() + "_shrubbery", std::ofstream::out);
 
+	std::string asciiTree =
+	"             v .   ._, |_  .,\n\
+          `-._\\/  .  \\ /    |/_  \n\
+              \\\\  _\\, y | \\//     \n\
+         _\\_.___\\, \\/ -.\\||     \n\
+          `7-,--.`._||  / / ,    \n\
+          /'     `-. `./ / |/_.' \n\
+                    |    |//     \n\
+                    |_    /      \n\
+                    |-   |       \n\
+                    |   =|       \n\
+                    |    |       \n\
+--------------------/ ,  . \\--------._\n";
+	ofs << asciiTree << std::flush;
+	std::cout << "[ execute success!! ]" << std::endl;
 }

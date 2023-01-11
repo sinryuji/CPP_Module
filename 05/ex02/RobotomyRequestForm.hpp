@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:55:21 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:37:19 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:06:50 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(const RobotomyRequestForm& origin);
 		~RobotomyRequestForm(void);
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& origin);
-		void	execute(Bureaucrat const& executor);
+		std::string	getTarget(void);
+		void		execute(Bureaucrat const& executor);
 };
 
 #endif

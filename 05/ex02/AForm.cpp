@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:04:38 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:04:47 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ AForm& AForm::operator=(const AForm& origin)
 
 std::ostream&	operator<<(std::ostream& out, const AForm& origin)
 {
-	out << "AForm (" << origin.getName() << "): signFlag = " << std::boolalpha << origin.getSignFlag() \
+	out << "Form (" << origin.getName() << "): signFlag = " << std::boolalpha << origin.getSignFlag() \
 		<< ", signGrade = " << origin.getSignGrade() << ", executeGrade = " << origin.getExecuteGrad();
 	return out;
 }
@@ -106,10 +106,10 @@ const char* AForm::GradeTooLowException::what() const throw()
 }
 
 AForm::RequiredGradeException::RequiredGradeException(std::string bureaucratName, \
-		std::string formName) : bureaucratName(bureaucratName), formName(formName)
+		std::string formName, std::string behavior)
 {
-	this->message = bureaucratName + " couldn't sign " + formName \
-			+ " because " + bureaucratName + " grade is lower than the required grade";
+	this->message = "[ " + bureaucratName + " couldn't " + behavior + " " + formName \
+			+ " because " + bureaucratName + " grade is lower than the required grade ]";
 }
 
 AForm::RequiredGradeException::~RequiredGradeException(void) throw() {}
@@ -119,13 +119,18 @@ const char* AForm::RequiredGradeException::what() const throw()
 	return this->message.c_str();
 }
 
+const char* AForm::NotSignedException::what() const throw()
+{
+	return "[ This Form hasn't been signed yet ]";
+}
+
 /*
  * -------------------------- Function -----------------------------
  */
 
 bool	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
-	if (bureaucrat.getGrade() <= this->signGrade)
+	if (bureaucrat.getGrade() <= this->getSignGrade())
 	{
 		if (this->signFlag == false)
 		{
@@ -136,5 +141,13 @@ bool	AForm::beSigned(const Bureaucrat& bureaucrat)
 			return false;
 	}
 	else
-		throw AForm::RequiredGradeException(bureaucrat.getName(), this->name);
+		throw AForm::RequiredGradeException(bureaucrat.getName(), this->getName(), "sign");
+}
+
+void	AForm::checkExecutePossible(const Bureaucrat& bureaucrat)
+{
+	if (this->getSignFlag() == false)
+		throw AForm::NotSignedException();
+	if (bureaucrat.getGrade() > this->getExecuteGrad())
+		throw AForm::RequiredGradeException(bureaucrat.getName(), this->getName(), "execute");
 }

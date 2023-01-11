@@ -1,15 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.cpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:40:59 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:36:41 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
+#include <ctime>
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 
@@ -17,12 +19,12 @@
  * -------------------------- Constructor --------------------------
  */
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("untitled", this->requiredSign, this->requiredExec), target("target")
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("robotomyRequestForm", this->requiredSign, this->requiredExec), target("target")
 {
 	std::cout << "RobotomyRequestForm constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("shrubberyCreationForm", this->requiredSign, this->requiredExec), target(target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("robotomyRequestForm", this->requiredSign, this->requiredExec), target(target)
 {
 	std::cout << "RobotomyRequestForm constructor called" << std::endl;
 }
@@ -60,19 +62,21 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
  * -------------------------- Getter -------------------------------
  */
 
-/*
- * -------------------------- Setter -------------------------------
- */
-
-/*
- * -------------------------- Overriding ---------------------------
- */
+std::string	RobotomyRequestForm::getTarget(void)
+{
+	return this->target;
+}
 
 /*
  * -------------------------- Function -----------------------------
  */
 
-void	execute(Bureaucrat const& executor)
+void	RobotomyRequestForm::execute(Bureaucrat const& executor)
 {
-
+	this->checkExecutePossible(executor);
+	std::srand(std::time(NULL));
+	if (std::rand() % 2 == 0)
+		std::cout << "[ " << this->getTarget() << " robotomized succeed!! ]" << std::endl;
+	else
+		std::cout << "[ " << this->getTarget() << " robotomized fail!! ]" << std::endl;
 }

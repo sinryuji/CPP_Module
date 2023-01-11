@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:55:21 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 18:37:27 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:06:44 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(const PresidentialPardonForm& origin);
 		~PresidentialPardonForm(void);
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& origin);
-		void	execute(Bureaucrat const& executor);
+		std::string	getTarget(void);
+		void		execute(Bureaucrat const& executor);
 };
 
 #endif

@@ -6,7 +6,7 @@
 #    By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 19:02:18 by hyeongki          #+#    #+#              #
-#    Updated: 2023/01/11 13:44:26 by hyeongki         ###   ########.fr        #
+#    Updated: 2023/01/11 22:33:11 by hyeongki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC				=	main.cpp\
 					AForm.cpp\
 					ShrubberyCreationForm.cpp\
 					RobotomyRequestForm.cpp\
-					PresidentialPardonForm.cpp
+#					PresidentialPardonForm.cpp
 OBJ				=	$(SRC:.cpp=.o)
 #----------------[ CMD ]------------------
 CC				=	c++

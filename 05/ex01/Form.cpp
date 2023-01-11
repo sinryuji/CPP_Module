@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 21:26:40 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:58:42 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ const char* Form::GradeTooLowException::what() const throw()
 Form::RequiredGradeException::RequiredGradeException(std::string bureaucratName, \
 		std::string formName)
 {
-	this->message = bureaucratName + " couldn't sign " + formName \
-			+ " because " + bureaucratName + " grade is lower than the required grade";
+	this->message = "[ " + bureaucratName + " couldn't sign " + formName \
+			+ " because " + bureaucratName + " grade is lower than the required grade ]";
 }
 
 Form::RequiredGradeException::~RequiredGradeException(void) throw() {}
@@ -126,7 +126,7 @@ const char* Form::RequiredGradeException::what() const throw()
 
 bool	Form::beSigned(const Bureaucrat& bureaucrat)
 {
-	if (bureaucrat.getGrade() <= this->signGrade)
+	if (bureaucrat.getGrade() <= this->getSignGrade())
 	{
 		if (this->signFlag == false)
 		{
@@ -137,5 +137,5 @@ bool	Form::beSigned(const Bureaucrat& bureaucrat)
 			return false;
 	}
 	else
-		throw Form::RequiredGradeException(bureaucrat.getName(), this->name);
+		throw Form::RequiredGradeException(bureaucrat.getName(), this->getName());
 }
