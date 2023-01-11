@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/10 23:26:38 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:04:26 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ Form::Form(const Form& origin) : name(origin.getName()), signFlag(origin.getSign
 							signGrade(origin.getSignGrade()), executeGrade(origin.getExecuteGrad())
 {
 	std::cout << "Form copy constructor called" << std::endl;
-	validateGrade(origin.signGrade);
-	validateGrade(origin.executeGrade);
+	validateGrade(origin.getSignGrade());
+	validateGrade(origin.getExecuteGrad());
 }
 
 /*
@@ -54,6 +54,8 @@ Form::~Form(void)
 
 Form& Form::operator=(const Form& origin)
 {
+	validateGrade(origin.getSignGrade());
+	validateGrade(origin.getExecuteGrad());
 	if (this != &origin)
 		this->signFlag = origin.getSignFlag();	
 	return *this;

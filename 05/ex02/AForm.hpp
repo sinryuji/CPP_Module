@@ -6,12 +6,12 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:00:10 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 13:02:44 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:36:52 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <iostream>
 
@@ -36,6 +36,7 @@ class AForm
 		int					getSignGrade(void) const;
 		int					getExecuteGrad(void) const;
 		bool				beSigned(const Bureaucrat& bureaucrat);
+		virtual void		execute(Bureaucrat const& executor) = 0;
 		class GradeTooHighException : public std::exception
 		{
 			public:

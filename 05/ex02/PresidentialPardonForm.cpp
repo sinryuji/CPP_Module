@@ -1,0 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/11 18:41:09 by hyeongki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "PresidentialPardonForm.hpp"
+#include "Bureaucrat.hpp"
+
+/*
+ * -------------------------- Constructor --------------------------
+ */
+
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("presidentialPardonForm", this->requiredSign, this->requiredExec), target("target")
+{
+	std::cout << "PresidentialPardonForm constructor called" << std::endl;
+}
+
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("presidentialPardonForm", this->requiredSign, this->requiredExec), target(target)
+{
+	std::cout << "PresidentialPardonForm constructor called" << std::endl;
+}
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& origin) : AForm(origin)
+{
+	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
+	validateGrade(origin.getSignGrade());
+	validateGrade((origin.getExecuteGrad()));
+}
+
+/*
+ * -------------------------- Destructor ---------------------------
+ */
+
+PresidentialPardonForm::~PresidentialPardonForm(void)
+{
+	std::cout << "PresidentialPardonForm destructor called" << std::endl;
+}
+
+/*
+ * -------------------------- Operator -----------------------------
+ */
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& origin)
+{
+	validateGrade(origin.getSignGrade());
+	validateGrade((origin.getExecuteGrad()));
+	if (this != &origin)
+		*this = origin;
+	return *this;
+}
+
+/*
+ * -------------------------- Getter -------------------------------
+ */
+
+/*
+ * -------------------------- Setter -------------------------------
+ */
+
+/*
+ * -------------------------- Overriding ---------------------------
+ */
+
+/*
+ * -------------------------- Function -----------------------------
+ */
+
+void	execute(Bureaucrat const& executor)
+{
+
+}
