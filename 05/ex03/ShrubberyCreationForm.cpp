@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 13:46:57 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:02:35 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const& executor)
 {
 	(void)executor;
 	std::ofstream	ofs;
-	ofs.open(this->getTarget() + "_shrubbery", std::ofstream::out);
+	std::string	file = this->getTarget() + "_shrubbery";
+	ofs.open(file.c_str(), std::ofstream::out);
 
 	std::string asciiTree =
 	"             v .   ._, |_  .,\n\
