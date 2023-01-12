@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:47:40 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 13:34:44 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:42:21 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,10 @@ void	Bureaucrat::signForm(AForm& form)
 
 void	Bureaucrat::executeForm(AForm & form)
 {
+	if (form.getSignFlag() == false)
+		throw AForm::NotSignedException();
+	if (this->getGrade() > form.getExecuteGrad())
+		throw AForm::RequiredGradeException(this->getName(), form.getName(), "execute");
 	form.execute(*this);
 	std::cout << "[ " << this->getName() << " executed " << form.getName() << " ]" << std::endl;
 }

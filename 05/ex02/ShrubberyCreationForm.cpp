@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 13:37:25 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:46:57 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ std::string	ShrubberyCreationForm::getTarget(void)
 
 void	ShrubberyCreationForm::execute(Bureaucrat const& executor)
 {
-	this->checkExecutePossible(executor);
+	(void)executor;
 	std::ofstream	ofs;
 	ofs.open(this->getTarget() + "_shrubbery", std::ofstream::out);
 

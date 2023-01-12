@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 11:07:35 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:48:29 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ std::string	PresidentialPardonForm::getTarget(void)
 
 void	PresidentialPardonForm::execute(Bureaucrat const& executor)
 {
-	this->checkExecutePossible(executor);
+	(void)executor;
 	std::cout << "[ Zaphod Beeblebrox pardoned the " << this->getTarget() << " ]" << std::endl;
 }
+

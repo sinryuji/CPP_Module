@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 14:12:53 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 13:34:28 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:42:29 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,11 @@ bool	AForm::beSigned(const Bureaucrat& bureaucrat)
 	else
 		throw AForm::RequiredGradeException(bureaucrat.getName(), this->getName(), "sign");
 }
-
-void	AForm::checkExecutePossible(const Bureaucrat& bureaucrat)
-{
-	if (this->getSignFlag() == false)
-		throw AForm::NotSignedException();
-	if (bureaucrat.getGrade() > this->getExecuteGrad())
-		throw AForm::RequiredGradeException(bureaucrat.getName(), this->getName(), "execute");
-}
+//
+//void	AForm::checkExecutePossible(const Bureaucrat& bureaucrat)
+//{
+//	if (this->getSignFlag() == false)
+//		throw AForm::NotSignedException();
+//	if (bureaucrat.getGrade() > this->getExecuteGrad())
+//		throw AForm::RequiredGradeException(bureaucrat.getName(), this->getName(), "execute");
+//}

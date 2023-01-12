@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 22:36:41 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:48:08 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ std::string	RobotomyRequestForm::getTarget(void)
 
 void	RobotomyRequestForm::execute(Bureaucrat const& executor)
 {
-	this->checkExecutePossible(executor);
+	(void)executor;
 	std::srand(std::time(NULL));
 	if (std::rand() % 2 == 0)
 		std::cout << "[ " << this->getTarget() << " robotomized succeed!! ]" << std::endl;
