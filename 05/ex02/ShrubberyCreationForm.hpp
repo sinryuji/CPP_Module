@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:55:21 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 21:05:48 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:43:24 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 class ShrubberyCreationForm : public AForm
 {
 	private:
-		static const int	requiredSign = 145;
-		static const int	requiredExec = 137;
 		std::string			target;	
 
 	public:
+		static const int	requiredSign = 145;
+		static const int	requiredExec = 137;
 		ShrubberyCreationForm(void);
 		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& origin);

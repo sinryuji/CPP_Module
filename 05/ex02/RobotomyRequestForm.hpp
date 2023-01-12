@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:55:21 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 21:06:50 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:44:43 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 class RobotomyRequestForm : public AForm
 {
 	private:
-		static const int	requiredSign = 72;
-		static const int	requiredExec = 45;
 		std::string			target;	
 
 	public:
+		static const int	requiredSign = 72;
+		static const int	requiredExec = 45;
 		RobotomyRequestForm(void);
 		RobotomyRequestForm(std::string target);
 		RobotomyRequestForm(const RobotomyRequestForm& origin);
