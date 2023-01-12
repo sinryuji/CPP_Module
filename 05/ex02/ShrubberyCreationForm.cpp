@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:48:55 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 11:05:49 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:37:25 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,4 @@ void	ShrubberyCreationForm::execute(Bureaucrat const& executor)
                     |    |       \n\
 --------------------/ ,  . \\--------._\n";
 	ofs << asciiTree << std::flush;
-	std::cout << "[ execute success!! ]" << std::endl;
 }

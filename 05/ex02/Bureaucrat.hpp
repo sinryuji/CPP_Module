@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:36:08 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 13:03:41 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:21:42 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Bureaucrat
 		void				increaseGrade(int grade);
 		void				decreaseGrade(int grade);
 		void				signForm(AForm& form);
+		void				executeForm(AForm & form);
 		class GradeTooHighException : public std::exception
 		{
 			public:

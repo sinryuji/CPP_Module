@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:47:40 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/11 13:03:58 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:34:44 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,13 @@ void	validateGrade(int grade)
 void	Bureaucrat::signForm(AForm& form)
 {
 	if (form.beSigned(*this) == true)
-		std::cout << this->name << " signed " << form.getName() << std::endl;
+		std::cout << "[ " << this->name << " signed " << form.getName() << " ]" << std::endl;
 	else
-		std::cout << form.getName() << " already signed" << std::endl;
+		std::cout << "[ " << form.getName() << " already signed" << " ]" << std::endl;
+}
+
+void	Bureaucrat::executeForm(AForm & form)
+{
+	form.execute(*this);
+	std::cout << "[ " << this->getName() << " executed " << form.getName() << " ]" << std::endl;
 }
