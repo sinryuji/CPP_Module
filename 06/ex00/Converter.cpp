@@ -3,141 +3,141 @@
 /*                                                        :::      ::::::::   */
 /*   Converter.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 15:41:23 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 18:03:46 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/13 16:00:06 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/13 17:14:27 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Converter.hpp"
 
 /*
- * -------------------------- Constructor -----------------------------
+ * -------------------------- Constructor --------------------------
  */
 
-Converter::Converter(void)
-{
-	this->setInputValue(NULL);
-	this->setCharValue(0);
-	this->setInputValue(0);
-	this->setFloatValue(0);
-	this->setDoubleValue(0);
-}
-
-Converter::Converter(char* inputValue)
-{
-	convert(inputValue);
-}
+Converter::Converter(void) {}
 
 Converter::Converter(const Converter& origin)
 {
-	this->setInputValue(origin.getInputValue());
-	this->setCharValue(origin.getCharValue());
-	this->setInputValue(origin.getInputValue());
-	this->setFloatValue(origin.getFloatValue());
-	this->setDoubleValue(origin.getDoubleValue());
+	*this = origin;
+}
+
+Converter::Converter(const std::string& input)
+{
+	this->setToChar(0);
+	this->setToInt(0);
+	this->setToFloat(0);
+	this->setToDouble(0);
+	convert(input);
 }
 
 /*
- * -------------------------- Destructor -----------------------------
+ * -------------------------- Destructor ---------------------------
  */
 
-Converter::~Converter(void)
-{
-}
+Converter::~Converter(void) {}
 
 /*
  * -------------------------- Operator -----------------------------
  */
-		
-Converter&	Converter::operator=(const Converter& origin)
+
+Converter& Converter::operator=(const Converter& origin)
 {
 	if (this != &origin)
 	{
-		this->setInputValue(origin.getInputValue());
-		this->setCharValue(origin.getCharValue());
-		this->setInputValue(origin.getInputValue());
-		this->setFloatValue(origin.getFloatValue());
-		this->setDoubleValue(origin.getDoubleValue());
+		*this = origin;
 	}
 	return *this;
-}		
+}
+
+std::ostream&	operator<<(std::ostream& out, const Converter& converter)
+{
+	out << "char: " << converter.getToChar() << "\n"
+		<< "int: " << converter.getToInt() << "\n"
+		<< "float: " << converter.getToFloat() << ".0f\n"
+		<< "double: " << converter.getToDouble() << ".0";
+	return out;
+}
 
 /*
  * -------------------------- Getter -------------------------------
  */
 
-char*	Converter::getInputValue(void) const
+char	Converter::getToChar(void) const
 {
-	return this->inputValue;
+	return this->toChar;
 }
-char		Converter::getCharValue(void) const
+
+int		Converter::getToInt(void) const
 {
-	return this->charValue;
+	return this->toInt;
 }
-int			Converter::getIntValue(void) const
+
+float	Converter::getToFloat(void) const
 {
-	return this->intValue;
+	return this->toFloat;
 }
-float		Converter::getFloatValue(void) const
+
+double	Converter::getToDouble(void) const
 {
-	return this->floatValue;
-}
-double		Converter::getDoubleValue(void) const
-{
-	return this->doubleValue;
+	return this->toDouble;
 }
 
 /*
  * -------------------------- Setter -------------------------------
  */
 
-void	Converter::setInputValue(char* inputValue)
+void	Converter::setToChar(char toChar)
 {
-	this->inputValue = inputValue;
+	this->toChar = toChar;
 }
-void	Converter::setCharValue(char charValue)
+
+void	Converter::setToInt(int toInt)
 {
-	this->charValue = charValue;
+	this->toInt = toInt;
 }
-void	Converter::setIntValue(int intValue)
+
+void	Converter::setToFloat(float toFloat)
 {
-	this->intValue = intValue;
+	this->toFloat = toFloat;
 }
-void	Converter::setFloatValue(float floatValue)
+
+void	Converter::setToDouble(double toDouble)
 {
-	this->floatValue = floatValue;
-}
-void	Converter::setDoubleValue(double doubleValue)
-{
-	this->doubleValue = doubleValue;
+	this->toDouble = toDouble;
 }
 
 /*
  * -------------------------- Function -----------------------------
  */
 
-void	Converter::convert(char* inputValue)
+void	Converter::convert(const std::string& input)
 {
+	if (isChar(input) == true)
+	{
+		this->setToChar(input[0]);
+		this->setToInt(static_cast<int>(this->getToChar()));
+		this->setToFloat(static_cast<float>(this->getToChar()));
+		this->setToDouble(static_cast<double>(this->getToChar()));
+		return;
+	}
+	this->setToInt(std::atoi(input.c_str()));
 
 }
 
-void	Converter::convertChar(char* inputValue)
+bool	Converter::isChar(const std::string& input)
 {
+	return (input.size() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]));
 }
 
-void	Converter::convertInt(char* inputValue)
+bool	Converter::isFloat(const std::string& input)
 {
-
+	return (input[input.length() - 1] == 'f');
 }
 
-void	Converter::convertFloat(char* inputValue)
+bool	Converter::isPseudo(const std::string& input)
 {
-	
-}
-
-void	Converter::convertDouble(char* inputValue)
-{
-
+	return (input == "-inff" || input == "+inff" || input == "nanf" ||
+			input == "-inf" || input == "inf" || input == "nan");
 }

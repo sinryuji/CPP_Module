@@ -1,51 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Converter.hpp                                        :+:      :+:    :+:   */
+/*   Converter.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 15:28:36 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 17:23:24 by hyeongki         ###   ########.fr       */
+/*   Created: 2023/01/13 15:59:12 by hyeongki          #+#    #+#             */
+/*   Updated: 2023/01/13 17:11:51 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONVERTOR_HPP
-# define CONVERTOR_HPP
+#ifndef CONVERTER_HPP
+# define CONVERTER_HPP
 
 # include <iostream>
+# include <fstream>
 
 class Converter
 {
 	private:
-		char*		inputValue;
-		char		charValue;
-		int			intValue;
-		float		floatValue;
-		double		doubleValue;
-		void		convertChar(char* inputValue);
-		void		convertInt(char* inputValue);
-		void		convertFloat(char* inputValue);
-		void		convertDouble(char* inputValue);
+		Converter(void);
+		char	toChar;
+		int		toInt;
+		float	toFloat;
+		double	toDouble;
+		bool	isChar(const std::string& input);
+		bool	isFloat(const std::string& input);
+		bool	isPseudo(const std::string& input);
 
 	public:
-		Converter(void);
-		Converter(char* inputValue);
+		Converter(const std::string& input);
 		Converter(const Converter& origin);
 		~Converter(void);
-		Converter&	operator=(const Converter& origin);
-		char*	getInputValue(void) const;
-		char		getCharValue(void) const;
-		int			getIntValue(void) const;
-		float		getFloatValue(void) const;
-		double		getDoubleValue(void) const;
-		void		setInputValue(char* inputValue);
-		void		setCharValue(char charValue);
-		void		setIntValue(int intValue);
-		void		setFloatValue(float floatValue);
-		void		setDoubleValue(double doubleValue);
-		void		convert(char* inputValue);
-		class		
+		Converter& operator=(const Converter& origin);
+		char	getToChar(void) const;
+		int		getToInt(void) const;
+		float	getToFloat(void) const;
+		double	getToDouble(void) const;
+		void	setToChar(char toChar);
+		void	setToInt(int toInt);
+		void	setToFloat(float toFloat);
+		void	setToDouble(double toDouble);
+		void	convert(const std::string& input);
 };
+
+std::ostream&	operator<<(std::ostream& out, const Converter& converter);
 
 #endif
