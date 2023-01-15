@@ -6,17 +6,21 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:00:06 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/13 17:14:27 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/15 11:19:36 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Converter.hpp"
+#include <cctype>
 
 /*
  * -------------------------- Constructor --------------------------
  */
 
-Converter::Converter(void) {}
+Converter::Converter(void)
+{
+
+}
 
 Converter::Converter(const Converter& origin)
 {
@@ -25,10 +29,10 @@ Converter::Converter(const Converter& origin)
 
 Converter::Converter(const std::string& input)
 {
-	this->setToChar(0);
-	this->setToInt(0);
-	this->setToFloat(0);
-	this->setToDouble(0);
+	this->setCharVal(0);
+	this->setIntVal(0);
+	this->setFloatVal(0);
+	this->setDoubleVal(0);
 	convert(input);
 }
 
@@ -53,10 +57,36 @@ Converter& Converter::operator=(const Converter& origin)
 
 std::ostream&	operator<<(std::ostream& out, const Converter& converter)
 {
-	out << "char: " << converter.getToChar() << "\n"
-		<< "int: " << converter.getToInt() << "\n"
-		<< "float: " << converter.getToFloat() << ".0f\n"
-		<< "double: " << converter.getToDouble() << ".0";
+	try {
+		out << "char: ";
+		std::string	str(1, converter.getCharVal());
+		str.insert(0, "'");
+		str.append("'");
+		out << str << "\n";
+	} catch(std::exception& e) {
+		out << e.what() << "\n";
+	}
+	try {
+		out << "int: " << converter.getIntVal() << "\n";
+	} catch(std::exception& e) {
+		out << e.what() << "\n";
+	}
+	try {
+		out << "float: " << converter.getFloatVal();
+		if (converter.getFloatVal() - static_cast<int>(converter.getFloatVal()) == 0)
+			out << ".0f\n";
+		else
+			out << "f\n";
+	} catch(std::exception& e) {
+		out << e.what() << "\n";
+	}
+	try {
+		out << "double: " << converter.getDoubleVal();
+		if (converter.getDoubleVal() - static_cast<int>(converter.getDoubleVal()) == 0)
+			out << ".0";
+	} catch(std::exception& e) {
+		out << e.what();
+	}
 	return out;
 }
 
@@ -64,48 +94,133 @@ std::ostream&	operator<<(std::ostream& out, const Converter& converter)
  * -------------------------- Getter -------------------------------
  */
 
-char	Converter::getToChar(void) const
+char	Converter::getCharVal(void) const
 {
-	return this->toChar;
+	if (this->doubleVal > std::numeric_limits<char>::max() ||
+			this->doubleVal < std::numeric_limits<char>::min())
+		throw ConvertImpossibleException();
+	if (isnan(this->doubleVal) || isinf(this->doubleVal))
+		throw ConvertImpossibleException();
+	if (!std::isprint(this->charVal))
+		throw NonDisplayableException();
+	return this->charVal;
 }
 
-int		Converter::getToInt(void) const
+int		Converter::getIntVal(void) const
 {
-	return this->toInt;
+	if (isnan(this->doubleVal) || isinf(this->doubleVal))
+		throw ConvertImpossibleException();
+	if (this->doubleVal > std::numeric_limits<int>::max() ||
+			this->doubleVal < std::numeric_limits<int>::min())
+		throw ConvertImpossibleException();
+	return this->intVal;
 }
 
-float	Converter::getToFloat(void) const
+float	Converter::getFloatVal(void) const
 {
-	return this->toFloat;
+	if (isnan(this->doubleVal))
+		throw NanfException();
+	if (isinf(this->doubleVal))
+	{
+		if (this->doubleVal < 0)
+			throw MInffException();
+		else
+			throw InffException();
+	}
+	if (this->doubleVal > std::numeric_limits<float>::max() ||
+			this->doubleVal < std::numeric_limits<float>::min())
+		throw ConvertImpossibleException();
+	return this->floatVal;
 }
 
-double	Converter::getToDouble(void) const
+double	Converter::getDoubleVal(void) const
 {
-	return this->toDouble;
+	if (isnan(this->doubleVal))
+		throw NanException();
+	if (isinf(this->doubleVal))
+	{
+		if (this->doubleVal < 0)
+			throw MInfExcepion();
+		else
+			throw InfException();
+	}
+	if (this->doubleVal > std::numeric_limits<double>::max() ||
+			this->doubleVal < std::numeric_limits<double>::min())
+		throw ConvertImpossibleException();
+	return this->doubleVal;
 }
 
 /*
  * -------------------------- Setter -------------------------------
  */
 
-void	Converter::setToChar(char toChar)
+void	Converter::setCharVal(char charVal)
 {
-	this->toChar = toChar;
+	this->charVal = charVal;
 }
 
-void	Converter::setToInt(int toInt)
+void	Converter::setIntVal(int intVal)
 {
-	this->toInt = toInt;
+	this->intVal = intVal;
 }
 
-void	Converter::setToFloat(float toFloat)
+void	Converter::setFloatVal(float floatVal)
 {
-	this->toFloat = toFloat;
+	this->floatVal = floatVal;
 }
 
-void	Converter::setToDouble(double toDouble)
+void	Converter::setDoubleVal(double doubleVal)
 {
-	this->toDouble = toDouble;
+	this->doubleVal = doubleVal;
+}
+
+/*
+ * -------------------------- Overriding ---------------------------
+ */
+
+const char* Converter::ConvertImpossibleException::what() const throw()
+{
+	return "impossible";
+}
+
+const char* Converter::NonDisplayableException::what() const throw()
+{
+	return "Non displayable";
+}
+
+const char* Converter::NanException::what() const throw()
+{
+	return "nan";
+}
+
+const char* Converter::NanfException::what() const throw()
+{
+	return "nanf";
+}
+
+const char* Converter::InfException::what() const throw()
+{
+	return "inf";
+}
+
+const char* Converter::InffException::what() const throw()
+{
+	return "inff";
+}
+
+const char* Converter::MInfExcepion::what() const throw()
+{
+	return "-inf";
+}
+
+const char* Converter::MInffException::what() const throw()
+{
+	return "-inff";
+}
+
+const char* Converter::AllImporssibleException::what() const throw()
+{
+	return "char: impossible\nint: impossible\nfloat: impossible\ndouble: impossible";
 }
 
 /*
@@ -114,16 +229,29 @@ void	Converter::setToDouble(double toDouble)
 
 void	Converter::convert(const std::string& input)
 {
-	if (isChar(input) == true)
+	if (isPseudo(input))
 	{
-		this->setToChar(input[0]);
-		this->setToInt(static_cast<int>(this->getToChar()));
-		this->setToFloat(static_cast<float>(this->getToChar()));
-		this->setToDouble(static_cast<double>(this->getToChar()));
+		toPseudo(input);
 		return;
 	}
-	this->setToInt(std::atoi(input.c_str()));
-
+	if (isChar(input))
+	{
+		this->toChar(input[0]);
+		return;
+	}
+	this->setIntVal(atoi(input.c_str()));
+	if (isFloat(input))
+	{
+		float f = atof(input.c_str());
+		this->setFloatVal(f);
+		this->setDoubleVal(static_cast<double>(f));
+	}
+	else
+	{
+		double d = strtod(input.c_str(), NULL);
+		this->setDoubleVal(d);
+		this->setFloatVal(static_cast<double>(d));
+	}
 }
 
 bool	Converter::isChar(const std::string& input)
@@ -131,13 +259,42 @@ bool	Converter::isChar(const std::string& input)
 	return (input.size() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]));
 }
 
-bool	Converter::isFloat(const std::string& input)
+bool	Converter::isFloat(std::string input)
 {
-	return (input[input.length() - 1] == 'f');
+	for (size_t i = 0; i < input.length(); i++)
+	{
+		if (!std::isdigit(input[i]) && input[i] != '.' && input[i] != 'f')
+			throw AllImporssibleException();
+	}
+	size_t dot = input.find('.');
+	size_t rDot = input.rfind('.');
+	if (dot != rDot)
+		throw AllImporssibleException();
+	if (input[input.length() - 1] != 'f')
+		return false;
+	return true;
 }
 
 bool	Converter::isPseudo(const std::string& input)
 {
 	return (input == "-inff" || input == "+inff" || input == "nanf" ||
-			input == "-inf" || input == "inf" || input == "nan");
+			input == "-inf" || input == "+inf" || input == "nan");
+}
+
+void	Converter::toPseudo(const std::string& input)
+{
+	if (input == "nan" || input == "nanf")
+		this->setDoubleVal(NAN);
+	else if (input[0] == '-')
+		this->setDoubleVal(-INFINITY);
+	else
+		this->setDoubleVal(INFINITY);
+}
+
+void	Converter::toChar(const char& ch)
+{
+	this->setCharVal(ch);
+	this->setIntVal(static_cast<int>(ch));
+	this->setFloatVal(static_cast<float>(ch));
+	this->setDoubleVal(static_cast<double>(ch));
 }

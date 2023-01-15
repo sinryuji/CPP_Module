@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 17:16:24 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/13 16:54:33 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/14 22:20:43 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int main(int argc, char **argv)
 		std::cout << "argument must be one" << std::endl;
 		return 0;
 	}
-	Converter converter = Converter(argv[1]);
-	std::cout << converter << std::endl;
+	try {
+		Converter converter = Converter(argv[1]);
+		std::cout << converter << std::endl;
+	} catch (std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
 	return 0;
 }
