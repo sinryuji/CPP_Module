@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 16:00:06 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/15 11:19:36 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/15 14:23:34 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ Converter::~Converter(void) {}
 Converter& Converter::operator=(const Converter& origin)
 {
 	if (this != &origin)
-	{
 		*this = origin;
-	}
 	return *this;
 }
 
@@ -127,9 +125,6 @@ float	Converter::getFloatVal(void) const
 		else
 			throw InffException();
 	}
-	if (this->doubleVal > std::numeric_limits<float>::max() ||
-			this->doubleVal < std::numeric_limits<float>::min())
-		throw ConvertImpossibleException();
 	return this->floatVal;
 }
 
@@ -144,9 +139,6 @@ double	Converter::getDoubleVal(void) const
 		else
 			throw InfException();
 	}
-	if (this->doubleVal > std::numeric_limits<double>::max() ||
-			this->doubleVal < std::numeric_limits<double>::min())
-		throw ConvertImpossibleException();
 	return this->doubleVal;
 }
 
@@ -263,7 +255,7 @@ bool	Converter::isFloat(std::string input)
 {
 	for (size_t i = 0; i < input.length(); i++)
 	{
-		if (!std::isdigit(input[i]) && input[i] != '.' && input[i] != 'f')
+		if (!std::isdigit(input[i]) && input[i] != '.' && input[i] != 'f' && input[i] != '-')
 			throw AllImporssibleException();
 	}
 	size_t dot = input.find('.');

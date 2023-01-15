@@ -6,11 +6,12 @@
 /*   By: hyeongki <hyeongki@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:19:50 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/12 18:56:28 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/15 13:56:25 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stdint.h>
 
 struct Data
 {
