@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 21:59:57 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/16 19:46:44 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:21:05 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ class Array
 				for (size_t i = 0; i < origin.size(); i++)	
 					this->arr[i] = origin[i];
 				this->_size = origin.size();
+			}
+			else
+			{
+				this->arr = NULL;
+				this->_size = 0;
 			}
 		}
 		~Array(void)
