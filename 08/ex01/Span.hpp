@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 01:24:09 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/18 01:46:49 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:38:48 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,30 @@ class Span
 		~Span(void);
 		Span&			operator=(const Span& origin);
 		void			addNumber(int n);
-		unsigned int	shortestSpan()	const;
-		unsigned int	longestSpan()	const;
+		template <typename InputIterator>
+		void			addNumber(InputIterator first, InputIterator last)
+		{
+			if (this->numbers.size() + std::distance(first, last) > this->size)
+				throw SpanIsFullException();
+			this->numbers.insert(this->numbers.begin(), first, last);
+			std::vector<int> tmp(this->numbers);
+			std::sort(tmp.begin(), tmp.end());
+			if (std::adjacent_find(tmp.begin(), tmp.end()) != tmp.end())
+				throw NumberExistException();
+		}
+		int				shortestSpan()	const;
+		int				longestSpan()	const;
 		class	SpanIsFullException : public std::exception
 		{
 			public:
 				const char* what(void) const throw();
 		};
 		class	NumberExistException : public std::exception
+		{
+			public:
+				const char* what(void) const throw();
+		};
+		class	TooSmallException : public std::exception
 		{
 			public:
 				const char* what(void) const throw();
