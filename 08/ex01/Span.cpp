@@ -6,10 +6,9 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 01:29:29 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/18 16:26:14 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:03:39 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "Span.hpp"
 #include <algorithm>
 
@@ -94,6 +93,6 @@ int	Span::longestSpan()	const
 {
 	if (this->numbers.size() < 2)
 		throw TooSmallException();
-	return (*std::max_element(this->numbers.begin(), this->numbers.end()) -
+	return (*std::max_element(this->numbers.begin(), this->numbers.end()) - \
 			*std::min_element(this->numbers.begin(), this->numbers.end()));
 }

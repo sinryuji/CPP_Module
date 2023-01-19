@@ -6,7 +6,7 @@
 /*   By: hyeongki <hyeongki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:46:26 by hyeongki          #+#    #+#             */
-/*   Updated: 2023/01/18 01:08:16 by hyeongki         ###   ########.fr       */
+/*   Updated: 2023/01/19 10:41:33 by hyeongki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typename T::iterator easyfind(T& container, int val)
 	{
 		if (*begin == val)
 			return begin;
-		begin++;
+		++begin;
 	}
 	return container.end();
 }
