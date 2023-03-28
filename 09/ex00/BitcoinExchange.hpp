@@ -6,29 +6,52 @@
 # include <vector>
 # include <fstream>
 # include <sstream>
+# include <cctype>
 
-typedef std::map<std::string, float> date;
 static const std::string k_db_name = "data.csv";
 
 class BitcoinExchange {
   public:
     BitcoinExchange(void);
+    BitcoinExchange(std::string file_name);
     BitcoinExchange(const BitcoinExchange& origin);
     ~BitcoinExchange(void);
     BitcoinExchange& operator=(const BitcoinExchange& origin);
     void printDB(void);
+    void exchange(void);
 
   private:
-    std::map<std::string, float> db;
-    void createDataBase(void);
+    std::map<std::string, double> db;
+    std::string input_file;
+    void parseDB(void);
+    void validateInput(std::vector<std::string> s, std::string line);
+    double getExchangeRate(std::string& date);
+
+  public:
+    class BadInputException : public std::exception {
+      private:
+        std::string message;
+
+      public:
+        BadInputException(std::string hinput);
+        ~BadInputException(void) throw();
+        const char* what(void) const throw();
+    };
+    class NotPositiveException : public std::exception {
+      public:
+        const char* what(void) const throw();
+    };
+    class TooLargeException : public std::exception {
+      public:
+        const char* what(void) const throw();
+    };
 };
 
-std::ifstream* readFile(const std::string& file_name);
 std::vector<std::string> split(std::string& str, char delim);
-date strToDate(std::string& str);
+bool ft_isdate(std::string& str);
+bool ft_isvalue(std::string & str);
 
-class FileOpenException : public std::exception
-{
+class FileOpenException : public std::exception {
   public:
     const char* what(void) const throw();
 };
