@@ -52,21 +52,29 @@ const char* FileOpenException::what() const throw()
  */
 
 void BitcoinExchange::createDataBase() {
-  std::ifstream file = readFile(k_db_name);
+  std::ifstream* source = readFile(k_db_name);
   std::string line;
 
-  while (std::getline(file, line)) {
-    std::vector<std::string> s = split(line, ',');
-    this->db.insert(std::pair<std::string, float>(s[0], std::atof(s[1].c_str())));
+  if (source) {
+    std::ifstream file;
+    file.swap(*source);
+    while (std::getline(file, line)) {
+      std::vector<std::string> s = split(line, ',');
+      this->db.insert(std::pair<std::string, float>(s[0], std::atof(s[1].c_str())));
+    }
+    file.close();
   }
-  file.close();
+  source->close();
+  delete source;
 }
 
-std::ifstream readFile(const std::string& file_name) {
-  std::ifstream file(file_name, std::ifstream::in);
+std::ifstream* readFile(const std::string& file_name) {
+  std::ifstream* file = new std::ifstream(file_name);
 
-  if (!file.is_open())
+  if (!file->is_open()) {
+    delete file;
     throw FileOpenException();
+  }
 
   return file;
 }

@@ -23,7 +23,7 @@ class BitcoinExchange {
     void createDataBase(void);
 };
 
-std::ifstream readFile(const std::string& file_name);
+std::ifstream* readFile(const std::string& file_name);
 std::vector<std::string> split(std::string& str, char delim);
 date strToDate(std::string& str);
 
