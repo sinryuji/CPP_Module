@@ -39,7 +39,7 @@ void BitcoinExchange::parseDB() {
   std::string line;
 
   if (!file.is_open())
-    throw std::invalid_argument("file open error!");
+    throw std::invalid_argument(k_open_err_msg);
   while (std::getline(file, line)) {
     std::vector<std::string> s = split(line, ',');
     this->db.insert(std::pair<std::string, double>(s[0], std::atof(s[1].c_str())));
@@ -59,7 +59,7 @@ void BitcoinExchange::exchange(std::string input) {
   std::string line;
 
   if (!file.is_open())
-    throw std::invalid_argument("file open error!");
+    throw std::invalid_argument(k_open_err_msg);
   while (std::getline(file, line)) {
     std::vector<std::string> s = split(line, '|');
     if (s[0] == "date" && s[1] == "value")

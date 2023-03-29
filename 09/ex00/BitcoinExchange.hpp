@@ -10,6 +10,7 @@
 # include <stdexcept>
 
 static const std::string k_db_name = "data.csv";
+static const std::string k_open_err_msg = "file open error!";
 
 class BitcoinExchange {
   public:
