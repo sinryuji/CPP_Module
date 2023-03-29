@@ -37,7 +37,7 @@ const char* RPN::InvalidExpressionException::what() const throw() {
   return "Error: invalid polish mathematical expression";
 }
 
-void RPN::calc(std::string input) {
+int RPN::calc(std::string input) {
   std::stack<int> s;
 
   for (size_t i = 0; i < input.length(); i++) {
@@ -53,7 +53,7 @@ void RPN::calc(std::string input) {
   }
   if (s.size() != 1)
     throw RPN::InvalidExpressionException();
-  std::cout << ft_pop(s) << std::endl;
+  return ft_pop(s);
 }
 
 bool RPN::validateInput(char c) {

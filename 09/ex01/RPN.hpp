@@ -10,7 +10,7 @@ class RPN {
     RPN(const RPN& origin);
     ~RPN(void);
     RPN& operator=(const RPN& origin);
-    void calc(std::string input);
+    int calc(std::string input);
 
   private:
     bool validateInput(char c);
