@@ -13,8 +13,6 @@ class RPN {
     void calc(std::string input);
 
   private:
-    std::stack<int> s;
-
     bool validateInput(char c);
     bool isOperator(char c);
     int calcOp(int a, int b, char op);

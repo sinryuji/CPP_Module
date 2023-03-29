@@ -6,7 +6,9 @@
 
 RPN::RPN(void) {}
 
-RPN::RPN(const RPN& origin) : s(origin.s) {}
+RPN::RPN(const RPN& origin) {
+  (void)origin;
+}
 
 /*
  * -------------------------- Destructor ---------------------------
@@ -19,8 +21,7 @@ RPN::~RPN(void) {}
  */
 
 RPN& RPN::operator=(const RPN& origin) {
-  if (this != &origin)
-    this->s = origin.s;
+  if (this != &origin) {}
   return *this;
 }
 
@@ -37,20 +38,22 @@ const char* RPN::InvalidExpressionException::what() const throw() {
 }
 
 void RPN::calc(std::string input) {
+  std::stack<int> s;
+
   for (size_t i = 0; i < input.length(); i++) {
     if (!validateInput(input[i]))
       throw RPN::InvalidInputException();
     if (std::isdigit(input[i]))
-      this->s.push(input[i] - '0');
+      s.push(input[i] - '0');
     if (isOperator(input[i])) {
-      if (this->s.size() < 2)
+      if (s.size() < 2)
         throw RPN::InvalidExpressionException();
-      this->s.push(calcOp(ft_pop(this->s), ft_pop(this->s), input[i]));
+      s.push(calcOp(ft_pop(s), ft_pop(s), input[i]));
     }
   }
-  if (this->s.size() != 1)
+  if (s.size() != 1)
     throw RPN::InvalidExpressionException();
-  std::cout << ft_pop(this->s) << std::endl;
+  std::cout << ft_pop(s) << std::endl;
 }
 
 bool RPN::validateInput(char c) {
