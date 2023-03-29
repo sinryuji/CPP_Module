@@ -7,6 +7,7 @@
 # include <fstream>
 # include <sstream>
 # include <cctype>
+# include <stdexcept>
 
 static const std::string k_db_name = "data.csv";
 
