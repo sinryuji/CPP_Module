@@ -31,20 +31,8 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& origin)
 }
 
 /*
- * -------------------------- Getter -------------------------------
+ * ----------------------- Member Function -------------------------
  */
-
-/*
- * -------------------------- Setter -------------------------------
- */
-
-/*
- * ------------------------ Overriding -----------------------------
- */
-
-const char* FileOpenException::what() const throw() {
-  return "Error: File Open Error!";
-}
 
 BitcoinExchange::BadInputException::BadInputException(std::string input) {
   this->message = "Error: bad input => " + input;
@@ -63,10 +51,6 @@ const char* BitcoinExchange::NotPositiveException::what() const throw() {
 const char* BitcoinExchange::TooLargeException::what() const throw() {
   return "Error: too large a number.";
 }
-
-/*
- * ----------------------- Member Function -------------------------
- */
 
 void BitcoinExchange::parseDB() {
   std::ifstream file(k_db_name);
@@ -146,6 +130,10 @@ double BitcoinExchange::getExchangeRate(std::string& date) {
 /*
  * ---------------------- Non-Member Function ----------------------
  */
+
+const char* FileOpenException::what() const throw() {
+  return "Error: File Open Error!";
+}
 
 std::vector<std::string> split(std::string& str, char delim) {
   std::vector<std::string> ret;
