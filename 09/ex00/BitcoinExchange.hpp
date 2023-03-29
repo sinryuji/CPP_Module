@@ -25,34 +25,12 @@ class BitcoinExchange {
     void parseDB(void);
     void validateInput(std::vector<std::string> s, std::string line);
     double getExchangeRate(std::string& date);
-    bool ft_isdate(std::string& str);
-    bool ft_isvalue(std::string & str);
-
-  public:
-    class BadInputException : public std::exception {
-      private:
-        std::string message;
-
-      public:
-        BadInputException(std::string hinput);
-        ~BadInputException(void) throw();
-        const char* what(void) const throw();
-    };
-    class NotPositiveException : public std::exception {
-      public:
-        const char* what(void) const throw();
-    };
-    class TooLargeException : public std::exception {
-      public:
-        const char* what(void) const throw();
-    };
+    bool isValue(std::string& str);
+    void validateDate(std::vector<std::string>& v);
+    void validateValue(std::string& str);
 };
 
 std::vector<std::string> split(std::string& str, char delim);
-
-class FileOpenException : public std::exception {
-  public:
-    const char* what(void) const throw();
-};
+bool strIsDigit(std::string& str);
 
 #endif
