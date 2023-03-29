@@ -13,16 +13,14 @@ static const std::string k_db_name = "data.csv";
 class BitcoinExchange {
   public:
     BitcoinExchange(void);
-    BitcoinExchange(std::string file_name);
     BitcoinExchange(const BitcoinExchange& origin);
     ~BitcoinExchange(void);
     BitcoinExchange& operator=(const BitcoinExchange& origin);
     void printDB(void);
-    void exchange(void);
+    void exchange(std::string input);
 
   private:
     std::map<std::string, double> db;
-    std::string input_file;
     void parseDB(void);
     void validateInput(std::vector<std::string> s, std::string line);
     double getExchangeRate(std::string& date);

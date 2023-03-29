@@ -11,8 +11,8 @@ int main(int argc, char** argv){
     return EXIT_FAILURE;
   }
   try {
-    BitcoinExchange be(argv[1]);
-    be.exchange();
+    BitcoinExchange be;
+    be.exchange(argv[1]);
   } catch (std::exception& e) {
     std::cerr << e.what() << std::endl;
   }

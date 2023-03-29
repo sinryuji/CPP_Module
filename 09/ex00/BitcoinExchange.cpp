@@ -12,10 +12,6 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& origin) {
   this->db = origin.db;
 }
 
-BitcoinExchange::BitcoinExchange(std::string file_name) : input_file(file_name){
-  this->parseDB();
-}
-
 /*
  * -------------------------- Destructor ---------------------------
  */
@@ -92,8 +88,8 @@ void BitcoinExchange::printDB(void) {
     std::cout << it->first << " " << it->second << std::endl;
 }
 
-void BitcoinExchange::exchange() {
-  std::ifstream file(this->input_file);
+void BitcoinExchange::exchange(std::string input) {
+  std::ifstream file(input);
   std::string line;
 
   if (!file.is_open())
