@@ -127,6 +127,31 @@ double BitcoinExchange::getExchangeRate(std::string& date) {
   return it->second;
 }
 
+bool BitcoinExchange::ft_isdate(std::string &str) {
+  for (size_t i = 0; i < str.length(); i++)
+    if (!std::isdigit(str[i]))
+      return false;
+  return true;
+}
+
+bool BitcoinExchange::ft_isvalue(std::string& str) {
+  bool point_flag = false;
+
+  if (str[0] != '-' && !std::isdigit(str[0]))
+    return false;
+  for (size_t i = 1; i < str.length(); i++) {
+    if (!(std::isdigit(str[i]) || str[i] == '.'))
+      return false;
+    if (str[i] == '.') {
+      if (!point_flag)
+        point_flag = true;
+      else
+        return false;
+    }
+  }
+  return true;
+}
+
 /*
  * ---------------------- Non-Member Function ----------------------
  */
@@ -149,29 +174,4 @@ std::vector<std::string> split(std::string& str, char delim) {
   }
 
   return ret;
-}
-
-bool ft_isdate(std::string &str) {
-  for (size_t i = 0; i < str.length(); i++)
-    if (!std::isdigit(str[i]))
-      return false;
-  return true;
-}
-
-bool ft_isvalue(std::string& str) {
-  bool point_flag = false;
-
-  if (str[0] != '-' && !std::isdigit(str[0]))
-    return false;
-  for (size_t i = 1; i < str.length(); i++) {
-    if (!(std::isdigit(str[i]) || str[i] == '.'))
-      return false;
-    if (str[i] == '.') {
-      if (!point_flag)
-        point_flag = true;
-      else
-        return false;
-    }
-  }
-  return true;
 }

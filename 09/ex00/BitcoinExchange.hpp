@@ -21,9 +21,12 @@ class BitcoinExchange {
 
   private:
     std::map<std::string, double> db;
+
     void parseDB(void);
     void validateInput(std::vector<std::string> s, std::string line);
     double getExchangeRate(std::string& date);
+    bool ft_isdate(std::string& str);
+    bool ft_isvalue(std::string & str);
 
   public:
     class BadInputException : public std::exception {
@@ -46,8 +49,6 @@ class BitcoinExchange {
 };
 
 std::vector<std::string> split(std::string& str, char delim);
-bool ft_isdate(std::string& str);
-bool ft_isvalue(std::string & str);
 
 class FileOpenException : public std::exception {
   public:
