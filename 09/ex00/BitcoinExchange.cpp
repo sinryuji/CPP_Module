@@ -104,6 +104,7 @@ void BitcoinExchange::exchange() {
       continue;
     try {
       validateInput(s, line);
+      std::cout.precision(9);
       std::cout << s[0] << " => " << s[1] << " = " << getExchangeRate(s[0]) * std::atof(s[1].c_str()) << std::endl;
     } catch (std::exception& e) {
       std::cerr << e.what() << std::endl;
@@ -140,8 +141,10 @@ double BitcoinExchange::getExchangeRate(std::string& date) {
   std::map<std::string, double>::iterator it = this->db.find(date);
   if (it != this->db.end())
     return it->second; 
-  return this->db.lower_bound(date)->second;
-  // 근사값만 올바르게 찾아내도록 해주면 끝날듯!?
+  it = db.upper_bound(date);
+  if (it != this->db.begin())
+    --it;
+  return it->second;
 }
 
 /*
