@@ -29,30 +29,24 @@ RPN& RPN::operator=(const RPN& origin) {
  * ----------------------- Member Function -------------------------
  */
 
-const char* RPN::InvalidInputException::what() const throw() {
-  return "Error: invalid input value";
-}
-
-const char* RPN::InvalidExpressionException::what() const throw() {
-  return "Error: invalid polish mathematical expression";
-}
-
 int RPN::calc(std::string input) {
   std::stack<int> s;
 
   for (size_t i = 0; i < input.length(); i++) {
-    if (!validateInput(input[i]))
-      throw RPN::InvalidInputException();
+    if (!validateInput(input[i])) {
+      std::string str(1, input[i]);
+      throw std::invalid_argument("invalid input => " + str);
+    }
     if (std::isdigit(input[i]))
       s.push(input[i] - '0');
     if (isOperator(input[i])) {
       if (s.size() < 2)
-        throw RPN::InvalidExpressionException();
+        throw std::invalid_argument(k_exp_err_msg);
       s.push(calcOp(ft_pop(s), ft_pop(s), input[i]));
     }
   }
   if (s.size() != 1)
-    throw RPN::InvalidExpressionException();
+    throw std::invalid_argument(k_exp_err_msg);
   return ft_pop(s);
 }
 
@@ -80,7 +74,7 @@ int RPN::calcOp(int a, int b, char op) {
 
 int RPN::ft_pop(std::stack<int>& s) {
   if (s.empty())
-    throw RPN::InvalidExpressionException();
+    throw std::invalid_argument(k_exp_err_msg);
   int ret = s.top();
   s.pop();
   return ret;

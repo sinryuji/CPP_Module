@@ -3,6 +3,9 @@
 
 # include <iostream>
 # include <stack>
+# include <stdexcept>
+
+const static std::string k_exp_err_msg = "invalid polish mathematical expression";
 
 class RPN {
   public:
@@ -17,16 +20,6 @@ class RPN {
     bool isOperator(char c);
     int calcOp(int a, int b, char op);
     int ft_pop(std::stack<int>& s);
-
-  public:
-    class InvalidInputException : public std::exception {
-      public:
-        const char* what(void) const throw();
-    };
-    class InvalidExpressionException : public std::exception {
-      public:
-        const char* what(void) const throw();
-    };
 };
 
 #endif
