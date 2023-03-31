@@ -38,6 +38,10 @@ void PmergeMe::sort(char** argv) {
   parseContainer(l, argv);
   std::cout << "Before:  ";
   printContainer(d);
+
+  clock_t start1 = clock();
+  sortContainer(d, 0, d.size() - 1);
+  sortContainer(l, 0, l.size() - 1);
 }
 
 void PmergeMe::validateInput(std::string input) {
