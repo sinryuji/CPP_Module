@@ -1,5 +1,4 @@
 #include "PmergeMe.hpp"
-#include <limits>
 
 /*
  * -------------------------- Constructor --------------------------
@@ -32,16 +31,31 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& origin) {
 
 void PmergeMe::sort(char** argv) {
   std::deque<int> d;
-  std::list<int> l;
+  std::vector<int> v;
 
   parseContainer(d, argv);
-  parseContainer(l, argv);
+  parseContainer(v, argv);
   std::cout << "Before:  ";
   printContainer(d);
 
-  clock_t start1 = clock();
+  clock_t start_deque = clock();
   sortContainer(d, 0, d.size() - 1);
-  sortContainer(l, 0, l.size() - 1);
+  clock_t finish_deque = clock();
+  clock_t start_vector = clock();
+  sortContainer(v, 0, v.size() - 1);
+  clock_t finish_vector = clock();
+  std::cout << "After:   ";
+  printContainer(d);
+  if (!isSorted(d))
+    std::cout << "deque is not sorted" << std::endl;
+  else
+    std::cout << "deque is sorted" << std::endl;
+  if (!isSorted(v))
+    std::cout << "vector is not sorted" << std::endl;
+  else
+    std::cout << "vector is sorted" << std::endl;
+  std::cout << "Time to process a range of " << d.size() << " elements with std::[deque] : " << (double)(finish_deque - start_deque) / 1000 << " us" << std::endl;
+  std::cout << "Time to process a range of " << v.size() << " elements with std::[vector] : " << (double)(finish_vector - start_vector) / 1000  << " us" << std::endl;
 }
 
 void PmergeMe::validateInput(std::string input) {

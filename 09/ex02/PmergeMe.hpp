@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include <deque>
-# include <list>
+# include <vector>
 # include <cctype>
 # include <stdexcept>
 # include <limits> 
@@ -18,27 +18,27 @@ class PmergeMe {
     PmergeMe& operator=(const PmergeMe& origin);
     void sort(char** argv);
 
-		template <typename Container>
-    void parseContainer(Container& c, char** argv) {
-      for (int i = 0; argv[i]; i++) {
-        validateInput(argv[i]);
-        c.push_back(std::atoi(argv[i]));
+    template <typename Container>
+      void parseContainer(Container& c, char** argv) {
+        for (int i = 0; argv[i]; i++) {
+          validateInput(argv[i]);
+          c.push_back(std::atoi(argv[i]));
+        }
       }
-    }
 
   private:
     void validateInput(std::string input);
 
-		template <typename Container>
-    void printContainer(Container& c) {
-      for (typename Container::iterator it = c.begin(); it != c.end(); ++it)
-        std::cout << *it << " ";
-      std::cout << std::endl;
-    }
+    template <typename Container>
+      void printContainer(Container& c) {
+        for (typename Container::iterator it = c.begin(); it != c.end(); ++it)
+          std::cout << *it << " ";
+        std::cout << std::endl;
+      }
 
     template <typename Container>
     void sortContainer(Container& c, int p, int r) {
-      if (r - p < K) {
+      if (r - p > K) {
         int q = (p + r) / 2;
         sortContainer(c, p, q);
         sortContainer(c, q + 1, r);
@@ -49,14 +49,24 @@ class PmergeMe {
     }
 
     template <typename Container>
+    Container copyContainer(Container& c, int p, int q) {
+      Container ret;
+
+      for (int i = p; i < q; i++)
+        ret.push_back(c[i]);
+
+      return ret;
+    }
+
+    template <typename Container>
     void mergeContainer(Container& c, int p, int q, int r) {
       int n1 = q - p + 1;
       int n2 = r - q;
-      int[] LA = Arrays.copyOfRange(c, p, q +1);
-      int[] RA = Arrays.copyOfRange(c, q+1, r +1);
+      Container LA = copyContainer(c, p, q + 1);
+      Container RA = copyContainer(c, q + 1, r + 1);
       int RIDX = 0;
       int LIDX = 0;
-      for (int i = p; i < r - p + 1; i++) {
+      for (int i = p; i < r + 1; i++) {
         if (RIDX == n2) {
           c[i] = LA[LIDX];
           LIDX++;
@@ -76,17 +86,27 @@ class PmergeMe {
     template <typename Container>
     void insertionSort(Container& c, int p, int q) {
       for (int i = p; i < q; i++) {
-        int tempVal = c[i + 1];
+        int tmp = c[i + 1];
         int j = i + 1;
-        while (j > p && c[j - 1] > tempVal) {
+        while (j > p && c[j - 1] > tmp) {
           c[j] = c[j - 1];
           j--;
         }
-        A[j] = tempVal;
+        c[j] = tmp;
       }
-      int[] temp = Arrays.copyOfRange(c, p, q +1);
-      Arrays.stream(temp).forEach(i -> System.out.print(i + " "));
-      System.out.println();
+    }
+
+    template <typename Container>
+    bool isSorted(Container& c) {
+      typename Container::iterator it = c.begin();
+      int prev = *it;
+      ++it;
+      for (; it != c.end(); ++it) {
+        if (*it < prev)
+          return false;
+        prev = *it;
+      }
+      return true;
     }
 };
 
