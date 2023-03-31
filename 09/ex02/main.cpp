@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     PmergeMe pm;
     pm.sort(++argv);
   } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
+    std::cout << "Error: " << e.what() << std::endl;
   }
 
   return EXIT_SUCCESS;

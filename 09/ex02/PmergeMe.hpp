@@ -4,6 +4,9 @@
 # include <iostream>
 # include <deque>
 # include <list>
+# include <cctype>
+# include <stdexcept>
+# include <limits> 
 
 class PmergeMe {
   public:
@@ -15,16 +18,25 @@ class PmergeMe {
 
 		template <typename Container>
     void parseContainer(Container& c, char** argv) {
-      for (int i = 0; argv[i]; i++)
+      for (int i = 0; argv[i]; i++) {
+        validateInput(argv[i]);
         c.push_back(std::atoi(argv[i]));
+      }
     }
 
   private:
+    void validateInput(std::string input);
+
 		template <typename Container>
     void printContainer(Container& c) {
       for (typename Container::iterator it = c.begin(); it != c.end(); ++it)
         std::cout << *it << " ";
       std::cout << std::endl;
+    }
+
+    template <typename Container>
+    void sortContainer(Container& c) {
+      
     }
 };
 

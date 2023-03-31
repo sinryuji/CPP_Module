@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <limits>
 
 /*
  * -------------------------- Constructor --------------------------
@@ -35,6 +36,16 @@ void PmergeMe::sort(char** argv) {
 
   parseContainer(d, argv);
   parseContainer(l, argv);
+  std::cout << "Before:  ";
   printContainer(d);
-  printContainer(l);
+}
+
+void PmergeMe::validateInput(std::string input) {
+  for (size_t i = 0; input[i]; i++) {
+    if (!std::isdigit(input[i]))
+      throw std::invalid_argument("invalid argument => " + input);
+  }
+  long tmp = std::atol(input.c_str());
+  if (tmp > std::numeric_limits<int>::max())
+    throw std::invalid_argument("input is greater than max value of int => " + input);
 }
