@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include <map>
-# include <vector>
+# include <list>
 # include <fstream>
 # include <sstream>
 # include <cctype>
@@ -25,14 +25,14 @@ class BitcoinExchange {
     std::map<std::string, double> db;
 
     void parseDB(void);
-    void validateInput(std::vector<std::string> s, std::string line);
+    void validateInput(std::list<std::string> s, std::string line);
     double getExchangeRate(std::string& date);
     bool isValue(std::string& str);
-    void validateDate(std::vector<std::string>& v);
+    void validateDate(std::list<std::string>& v);
     void validateValue(std::string& str);
 };
 
-std::vector<std::string> split(std::string& str, char delim);
+std::list<std::string> split(std::string& str, char delim);
 bool strIsDigit(std::string& str);
 
 #endif

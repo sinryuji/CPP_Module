@@ -41,8 +41,8 @@ void BitcoinExchange::parseDB() {
   if (!file.is_open())
     throw std::invalid_argument(k_open_err_msg);
   while (std::getline(file, line)) {
-    std::vector<std::string> s = split(line, ',');
-    this->db.insert(std::pair<std::string, double>(s[0], std::atof(s[1].c_str())));
+    std::list<std::string> l = split(line, ',');
+    this->db.insert(std::pair<std::string, double>(l.front(), std::atof(l.back().c_str())));
   }
   file.close();
 }
@@ -61,13 +61,15 @@ void BitcoinExchange::exchange(std::string input) {
   if (!file.is_open())
     throw std::invalid_argument(k_open_err_msg);
   while (std::getline(file, line)) {
-    std::vector<std::string> s = split(line, '|');
-    if (s[0] == "date" && s[1] == "value")
+    std::list<std::string> l = split(line, '|');
+    if (l.empty())
+      continue;
+    if (l.front() == "date" && l.back() == "value")
       continue;
     try {
-      validateInput(s, line);
+      validateInput(l, line);
       std::cout.precision(9);
-      std::cout << s[0] << " => " << s[1] << " = " << getExchangeRate(s[0]) * std::atof(s[1].c_str()) << std::endl;
+      std::cout << l.front() << " => " << l.back() << " = " << getExchangeRate(l.front()) * std::atof(l.back().c_str()) << std::endl;
     } catch (std::exception& e) {
       std::cerr << "Error: " << e.what() << std::endl;
     }
@@ -75,17 +77,17 @@ void BitcoinExchange::exchange(std::string input) {
   file.close();
 }
 
-void BitcoinExchange::validateInput(std::vector<std::string> s, std::string line) {
-  if (s.size() != 2)
+void BitcoinExchange::validateInput(std::list<std::string> l, std::string line) {
+  if (l.size() != 2)
     throw std::invalid_argument("bad input => " + line);
-
-  std::vector<std::string> v = split(s[0], '-');
+  
+  std::list<std::string> v = split(l.front(), '-');
 
   if (v.size() == 3)
     validateDate(v);
   else
     throw std::invalid_argument("invalid date format => " + line);
-  validateValue(s[1]);
+  validateValue(l.back());
 }
 
 double BitcoinExchange::getExchangeRate(std::string& date) {
@@ -116,15 +118,23 @@ bool BitcoinExchange::isValue(std::string& str) {
   return true;
 }
 
-void BitcoinExchange::validateDate(std::vector<std::string>& v) {
-  for (size_t i = 0; i < v.size(); i++) {
-    if (!strIsDigit(v[i]))
-      throw std::invalid_argument("invalid date => " + v[i]);
-  }
-  if (std::atoi(v[1].c_str()) > 12)
-    throw std::invalid_argument("invalid month => " + v[1]);
-  if (std::atoi(v[2].c_str()) > 31)
-    throw std::invalid_argument("invalid day => " + v[2]);
+void BitcoinExchange::validateDate(std::list<std::string>& v) {
+//  for (size_t i = 0; i < v.size(); i++) {
+//    if (!strIsDigit(v[i]))
+//      throw std::invalid_argument("invalid date => " + v[i]);
+//  }
+//  if (std::atoi(v[1].c_str()) > 12)
+//    throw std::invalid_argument("invalid month => " + v[1]);
+//  if (std::atoi(v[2].c_str()) > 31)
+//    throw std::invalid_argument("invalid day => " + v[2]);
+  std::list<std::string>::iterator it = v.begin();
+  for (; it != v.end(); ++it)
+    if (!strIsDigit(*it))
+      throw std::invalid_argument("invalid date => " + *it);
+  if (std::atoi((*(--it)).c_str()) > 31)
+    throw std::invalid_argument("invalid day => " + *it);
+  if (std::atoi((*(--it)).c_str()) > 12)
+    throw std::invalid_argument("invalid month => " + *it);
 }
 
 void BitcoinExchange::validateValue(std::string& str) {
@@ -140,8 +150,8 @@ void BitcoinExchange::validateValue(std::string& str) {
  * ---------------------- Non-Member Function ----------------------
  */
 
-std::vector<std::string> split(std::string& str, char delim) {
-  std::vector<std::string> ret;
+std::list<std::string> split(std::string& str, char delim) {
+  std::list<std::string> ret;
   std::stringstream ss(str);
   std::string tmp;
 
