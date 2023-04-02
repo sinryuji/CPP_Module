@@ -8,8 +8,9 @@
 # include <sstream>
 # include <cctype>
 # include <stdexcept>
+# include <cstdlib>
 
-static const std::string k_db_name = "data.csv";
+static std::string k_db_name = "data.csv";
 static const std::string k_open_err_msg = "file open error!";
 
 class BitcoinExchange {

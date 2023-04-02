@@ -4,6 +4,7 @@
 # include <iostream>
 # include <stack>
 # include <stdexcept>
+# include <cstdlib>
 
 const static std::string k_exp_err_msg = "invalid polish mathematical expression";
 

@@ -7,8 +7,9 @@
 # include <cctype>
 # include <stdexcept>
 # include <limits> 
+# include <cstdlib>
 
-const static int K = 16;
+const static int K = 5;
 
 class PmergeMe {
   public:
@@ -62,23 +63,23 @@ class PmergeMe {
     void mergeContainer(Container& c, int p, int q, int r) {
       int n1 = q - p + 1;
       int n2 = r - q;
-      Container LA = copyContainer(c, p, q + 1);
-      Container RA = copyContainer(c, q + 1, r + 1);
-      int RIDX = 0;
-      int LIDX = 0;
+      Container left = copyContainer(c, p, q + 1);
+      Container right = copyContainer(c, q + 1, r + 1);
+      int right_idx = 0;
+      int left_idx = 0;
       for (int i = p; i < r + 1; i++) {
-        if (RIDX == n2) {
-          c[i] = LA[LIDX];
-          LIDX++;
-        } else if (LIDX == n1) {
-          c[i] = RA[RIDX];
-          RIDX++;
-        } else if (RA[RIDX] > LA[LIDX]) {
-          c[i] = LA[LIDX];
-          LIDX++;
+        if (right_idx == n2) {
+          c[i] = left[left_idx];
+          left_idx++;
+        } else if (left_idx == n1) {
+          c[i] = right[right_idx];
+          right_idx++;
+        } else if (right[right_idx] > right[left_idx]) {
+          c[i] = left[left_idx];
+          left_idx++;
         } else {
-          c[i] = RA[RIDX];
-          RIDX++;
+          c[i] = right[right_idx];
+          right_idx++;
         }
       }
     }

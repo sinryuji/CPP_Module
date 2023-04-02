@@ -35,7 +35,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& origin)
  */
 
 void BitcoinExchange::parseDB() {
-  std::ifstream file(k_db_name);
+  std::ifstream file(k_db_name.c_str(), std::ifstream::in);
   std::string line;
 
   if (!file.is_open())
@@ -55,7 +55,7 @@ void BitcoinExchange::printDB(void) {
 }
 
 void BitcoinExchange::exchange(std::string input) {
-  std::ifstream file(input);
+  std::ifstream file(input.c_str(), std::ifstream::in);
   std::string line;
 
   if (!file.is_open())
@@ -119,14 +119,6 @@ bool BitcoinExchange::isValue(std::string& str) {
 }
 
 void BitcoinExchange::validateDate(std::list<std::string>& v) {
-//  for (size_t i = 0; i < v.size(); i++) {
-//    if (!strIsDigit(v[i]))
-//      throw std::invalid_argument("invalid date => " + v[i]);
-//  }
-//  if (std::atoi(v[1].c_str()) > 12)
-//    throw std::invalid_argument("invalid month => " + v[1]);
-//  if (std::atoi(v[2].c_str()) > 31)
-//    throw std::invalid_argument("invalid day => " + v[2]);
   std::list<std::string>::iterator it = v.begin();
   for (; it != v.end(); ++it)
     if (!strIsDigit(*it))
