@@ -74,7 +74,7 @@ class PmergeMe {
         } else if (left_idx == n1) {
           c[i] = right[right_idx];
           right_idx++;
-        } else if (right[right_idx] > right[left_idx]) {
+        } else if (right[right_idx] > left[left_idx]) {
           c[i] = left[left_idx];
           left_idx++;
         } else {
